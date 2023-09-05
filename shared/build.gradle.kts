@@ -43,6 +43,7 @@ kotlin {
                 implementation(kotlin("test"))
             }
         }
+        val iosMain by getting
     }
 }
 
@@ -51,5 +52,9 @@ android {
     compileSdk = 34
     defaultConfig {
         minSdk = 24
+    }
+
+    sourceSets["main"].apply {
+        res.srcDirs("src/androidMain/res", "src/commonMain/resources")
     }
 }
