@@ -36,6 +36,8 @@ kotlin {
                 implementation(compose.material)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
+                api("io.github.qdsfdhvh:image-loader:1.6.5")
+                implementation("io.ktor:ktor-client-cio:2.3.4")
             }
         }
         val commonTest by getting {
