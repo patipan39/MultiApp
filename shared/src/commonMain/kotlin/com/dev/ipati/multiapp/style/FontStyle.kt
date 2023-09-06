@@ -7,11 +7,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun FontWeight400(textColor: Color = Color.White): TextStyle {
+fun FontWeight400(textColor: Color = Color.White, textSize: Int): TextStyle {
     return TextStyle(
         color = textColor,
         fontWeight = FontWeight(400),
         fontFamily = FontRes.fontInterLight(),
-        fontSize = 13.sp
+        fontSize = textSize.sp
     )
 }

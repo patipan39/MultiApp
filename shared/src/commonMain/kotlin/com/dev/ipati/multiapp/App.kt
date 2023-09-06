@@ -23,6 +23,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.dev.ipati.multiapp.compose.Detail
+import com.dev.ipati.multiapp.res.PainterRes
 import com.dev.ipati.multiapp.style.FontWeight400
 import com.seiko.imageloader.rememberImagePainter
 
@@ -41,6 +43,7 @@ fun App() {
     ) {
         AppToolbar()
         Thumbnail()
+        Detail()
     }
 }
 
@@ -72,12 +75,12 @@ fun AppToolbar() {
             Text(
                 modifier = Modifier,
                 text = "Now playing",
-                style = FontWeight400()
+                style = FontWeight400(textSize = 13)
             )
             Text(
                 modifier = Modifier,
                 text = "Playlist of the day",
-                style = FontWeight400()
+                style = FontWeight400(textSize = 13)
             )
         }
 

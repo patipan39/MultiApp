@@ -1,8 +1,9 @@
-package com.dev.ipati.multiapp
+package com.dev.ipati.multiapp.res
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
+import com.dev.ipati.multiapp.R
 
 actual object PainterRes {
     @Composable
@@ -13,4 +14,10 @@ actual object PainterRes {
 
     @Composable
     actual fun iconMenu(): Painter = painterResource(R.drawable.ic_menu)
+
+    @Composable
+    actual fun iconShare(): Painter = painterResource(R.drawable.ic_share)
+
+    @Composable
+    actual fun iconDots(): Painter = painterResource(R.drawable.ic_dots)
 }
