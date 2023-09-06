@@ -2,6 +2,7 @@ package com.dev.ipati.multiapp.compose
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -13,11 +14,13 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.currentCompositionLocalContext
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.dev.ipati.multiapp.media.MediaPlayer
 import com.dev.ipati.multiapp.res.PainterRes
 
 @Composable
@@ -41,7 +44,11 @@ fun ControllerPlayer() {
             shape = RoundedCornerShape(50)
         ) {
             Row(
-                modifier = Modifier.padding(vertical = 21.dp),
+                modifier = Modifier.padding(vertical = 21.dp).clickable {
+                    MediaPlayer.Play(
+                        "/Users/patipaninjai/AndroidStudioProjects/MultiApp/shared/src/commonMain/resources/raw/first_love.mp3"
+                    )
+                },
                 horizontalArrangement = Arrangement.spacedBy(4.dp, Alignment.CenterHorizontally)
             ) {
                 Card(

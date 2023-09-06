@@ -28,6 +28,16 @@ kotlin {
     }
 
     sourceSets {
+        val androidMain by getting {
+            dependencies {
+                implementation("androidx.media3:media3-exoplayer:1.1.1")
+                implementation("androidx.media3:media3-exoplayer-dash:1.1.1")
+                implementation("androidx.media3:media3-ui:1.1.1")
+
+                //koin
+                api("io.insert-koin:koin-android:3.2.0")
+            }
+        }
         val commonMain by getting {
             dependencies {
                 //put your multiplatform dependencies here
@@ -38,6 +48,10 @@ kotlin {
                 implementation(compose.components.resources)
                 api("io.github.qdsfdhvh:image-loader:1.6.5")
                 implementation("io.ktor:ktor-client-cio:2.3.4")
+
+                //koin
+                api("io.insert-koin:koin-core:3.2.0")
+                api("io.insert-koin:koin-test:3.2.0")
             }
         }
         val commonTest by getting {
