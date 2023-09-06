@@ -23,7 +23,7 @@ import com.dev.ipati.multiapp.style.FontWeight400
 @Composable
 fun Detail() {
     Column(
-        modifier = Modifier.padding(horizontal = 16.dp),
+        modifier = Modifier.padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(4.dp)
     ) {
         Row(horizontalArrangement = Arrangement.SpaceBetween) {

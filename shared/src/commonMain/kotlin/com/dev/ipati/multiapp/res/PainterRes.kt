@@ -18,4 +18,13 @@ expect object PainterRes {
 
     @Composable
     fun iconDots(): Painter
+
+    @Composable
+    fun iconSubTitle(): Painter
+
+    @Composable
+    fun iconPrevious(): Painter
+
+    @Composable
+    fun iconNext(): Painter
 }

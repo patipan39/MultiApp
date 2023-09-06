@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Card
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -22,7 +23,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import com.dev.ipati.multiapp.compose.ControllerPlayer
 import com.dev.ipati.multiapp.compose.Detail
 import com.dev.ipati.multiapp.res.PainterRes
 import com.dev.ipati.multiapp.style.FontWeight400
@@ -44,6 +47,7 @@ fun App() {
         AppToolbar()
         Thumbnail()
         Detail()
+        ControllerPlayer()
     }
 }
 
@@ -110,18 +114,20 @@ fun Thumbnail() {
         "https://www.khaosod.co.th/wpapp/uploads/2023/06/ent15p1-6.jpg"
     )
     Box(modifier = Modifier.fillMaxWidth()) {
-        Column(
+        Card(
             modifier = Modifier
                 .wrapContentSize()
                 .align(Alignment.Center)
+                .clip(RoundedCornerShape(14.dp)),
+            backgroundColor = Color(0x66F2F2F2)
         ) {
             Image(
                 modifier = Modifier
                     .width(266.dp)
-                    .height(268.dp)
-                    .clip(RoundedCornerShape(14.dp)),
+                    .height(268.dp),
                 painter = image,
-                contentDescription = null
+                contentDescription = null,
+                contentScale = ContentScale.Crop
             )
         }
     }

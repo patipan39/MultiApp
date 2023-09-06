@@ -21,4 +21,13 @@ actual object PainterRes {
 
     @Composable
     actual fun iconDots(): Painter = painterResource("drawable/ic_dots.xml")
+
+    @Composable
+    actual fun iconSubTitle(): Painter = painterResource("drawable/ic_subtitle.xml")
+
+    @Composable
+    actual fun iconPrevious(): Painter = painterResource("drawable/ic_previous.xml")
+
+    @Composable
+    actual fun iconNext(): Painter = painterResource("drawable/ic_next.xml")
 }

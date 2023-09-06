@@ -20,4 +20,13 @@ actual object PainterRes {
 
     @Composable
     actual fun iconDots(): Painter = painterResource(R.drawable.ic_dots)
+
+    @Composable
+    actual fun iconSubTitle(): Painter = painterResource(R.drawable.ic_subtitle)
+
+    @Composable
+    actual fun iconPrevious(): Painter = painterResource(R.drawable.ic_previous)
+
+    @Composable
+    actual fun iconNext(): Painter = painterResource(R.drawable.ic_next)
 }
