@@ -73,5 +73,6 @@ fun Detail() {
                 )
             )
         }
+        ControllerPlayer()
     }
 }

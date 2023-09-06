@@ -29,4 +29,19 @@ actual object PainterRes {
 
     @Composable
     actual fun iconNext(): Painter = painterResource(R.drawable.ic_next)
+
+    @Composable
+    actual fun iconRepeat(): Painter = painterResource(R.drawable.ic_repeat)
+
+    @Composable
+    actual fun iconSetting(): Painter = painterResource(R.drawable.ic_settings)
+
+    @Composable
+    actual fun iconText(): Painter = painterResource(R.drawable.ic_text)
+
+    @Composable
+    actual fun iconTimer(): Painter = painterResource(R.drawable.ic_timer)
+
+    @Composable
+    actual fun iconShuffle(): Painter = painterResource(R.drawable.ic_shuffle)
 }

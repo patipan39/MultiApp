@@ -22,7 +22,7 @@ import com.dev.ipati.multiapp.res.PainterRes
 @Composable
 fun ControllerPlayer() {
     Row(
-        modifier = Modifier.padding(horizontal = 16.dp),
+        modifier = Modifier,
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {

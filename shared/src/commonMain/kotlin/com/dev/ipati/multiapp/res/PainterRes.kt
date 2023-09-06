@@ -27,4 +27,19 @@ expect object PainterRes {
 
     @Composable
     fun iconNext(): Painter
+
+    @Composable
+    fun iconRepeat(): Painter
+
+    @Composable
+    fun iconSetting(): Painter
+
+    @Composable
+    fun iconText(): Painter
+
+    @Composable
+    fun iconTimer(): Painter
+
+    @Composable
+    fun iconShuffle(): Painter
 }

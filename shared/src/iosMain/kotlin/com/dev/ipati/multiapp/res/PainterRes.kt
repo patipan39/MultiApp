@@ -30,4 +30,19 @@ actual object PainterRes {
 
     @Composable
     actual fun iconNext(): Painter = painterResource("drawable/ic_next.xml")
+
+    @Composable
+    actual fun iconRepeat(): Painter = painterResource("drawable/ic_repeat.xml")
+
+    @Composable
+    actual fun iconSetting(): Painter = painterResource("drawable/ic_settings.xml")
+
+    @Composable
+    actual fun iconText(): Painter = painterResource("drawable/ic_text.xml")
+
+    @Composable
+    actual fun iconTimer(): Painter = painterResource("drawable/ic_timer.xml")
+
+    @Composable
+    actual fun iconShuffle(): Painter = painterResource("drawable/ic_shuffle.xml")
 }

@@ -25,7 +25,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import com.dev.ipati.multiapp.compose.ControllerPlayer
+import com.dev.ipati.multiapp.compose.BottomMenu
 import com.dev.ipati.multiapp.compose.Detail
 import com.dev.ipati.multiapp.res.PainterRes
 import com.dev.ipati.multiapp.style.FontWeight400
@@ -42,12 +42,12 @@ fun App() {
                         Color(0x877A51E2)
                     )
                 )
-            )
+            ),
+        verticalArrangement = Arrangement.SpaceAround
     ) {
         AppToolbar()
         Thumbnail()
-        Detail()
-        ControllerPlayer()
+        BottomMenu()
     }
 }
 
@@ -57,7 +57,7 @@ fun AppToolbar() {
         Modifier
             .fillMaxWidth()
             .wrapContentHeight()
-            .padding(start = 16.dp, top = 60.dp, end = 16.dp),
+            .padding(start = 16.dp, end = 16.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         Box(modifier = Modifier.weight(1f).align(Alignment.CenterVertically)) {
@@ -79,7 +79,7 @@ fun AppToolbar() {
             Text(
                 modifier = Modifier,
                 text = "Now playing",
-                style = FontWeight400(textSize = 13)
+                style = FontWeight400(textSize = 12)
             )
             Text(
                 modifier = Modifier,
@@ -113,22 +113,25 @@ fun Thumbnail() {
     val image = rememberImagePainter(
         "https://www.khaosod.co.th/wpapp/uploads/2023/06/ent15p1-6.jpg"
     )
-    Box(modifier = Modifier.fillMaxWidth()) {
-        Card(
-            modifier = Modifier
-                .wrapContentSize()
-                .align(Alignment.Center)
-                .clip(RoundedCornerShape(14.dp)),
-            backgroundColor = Color(0x66F2F2F2)
-        ) {
-            Image(
+    Column {
+        Box(modifier = Modifier.fillMaxWidth()) {
+            Card(
                 modifier = Modifier
-                    .width(266.dp)
-                    .height(268.dp),
-                painter = image,
-                contentDescription = null,
-                contentScale = ContentScale.Crop
-            )
+                    .wrapContentSize()
+                    .align(Alignment.Center)
+                    .clip(RoundedCornerShape(14.dp)),
+                backgroundColor = Color(0x66F2F2F2)
+            ) {
+                Image(
+                    modifier = Modifier
+                        .width(266.dp)
+                        .height(268.dp),
+                    painter = image,
+                    contentDescription = null,
+                    contentScale = ContentScale.Crop
+                )
+            }
         }
+        Detail()
     }
 }
