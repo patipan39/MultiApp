@@ -25,4 +25,10 @@ actual object MediaPlayer {
             }
         }
     }
+
+    actual fun isPlaying(): Boolean {
+        return avPlayer?.let {
+            it.rate() != 0f
+        } ?: false
+    }
 }

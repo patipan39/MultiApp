@@ -6,7 +6,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -73,11 +72,11 @@ fun PauseIcon(onClicked: ((Boolean) -> Unit)? = null) {
             )
             onClicked?.invoke(true)
         },
-        horizontalArrangement = Arrangement.spacedBy(4.dp, Alignment.CenterHorizontally)
+        horizontalArrangement = Arrangement.Center
     ) {
         Image(
-            modifier = Modifier.fillMaxSize(),
             painter = PainterRes.iconPause(),
+            modifier = Modifier.fillMaxSize(),
             colorFilter = ColorFilter.tint(Color(0xFF383344)),
             contentDescription = null
         )
@@ -97,8 +96,8 @@ fun PlayIcon(onClicked: ((Boolean) -> Unit)? = null) {
         horizontalArrangement = Arrangement.Center
     ) {
         Image(
-            modifier = Modifier.fillMaxSize(),
             painter = PainterRes.iconPlay(),
+            modifier = Modifier.fillMaxSize(),
             colorFilter = ColorFilter.tint(Color(0xFF383344)),
             contentDescription = null
         )
