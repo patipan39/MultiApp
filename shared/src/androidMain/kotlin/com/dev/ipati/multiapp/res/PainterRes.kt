@@ -44,4 +44,10 @@ actual object PainterRes {
 
     @Composable
     actual fun iconShuffle(): Painter = painterResource(R.drawable.ic_shuffle)
+
+    @Composable
+    actual fun iconPlay(): Painter = painterResource(R.drawable.ic_play)
+
+    @Composable
+    actual fun iconPause(): Painter = painterResource(R.drawable.ic_pause)
 }

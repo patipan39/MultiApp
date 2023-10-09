@@ -45,4 +45,10 @@ actual object PainterRes {
 
     @Composable
     actual fun iconShuffle(): Painter = painterResource("drawable/ic_shuffle.xml")
+
+    @Composable
+    actual fun iconPlay(): Painter = painterResource("drawable/ic_play.xml")
+
+    @Composable
+    actual fun iconPause(): Painter = painterResource("drawable/ic_pause.xml")
 }

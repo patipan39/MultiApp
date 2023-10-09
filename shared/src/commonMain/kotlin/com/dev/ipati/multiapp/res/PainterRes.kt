@@ -42,4 +42,10 @@ expect object PainterRes {
 
     @Composable
     fun iconShuffle(): Painter
+
+    @Composable
+    fun iconPlay(): Painter
+
+    @Composable
+    fun iconPause(): Painter
 }
