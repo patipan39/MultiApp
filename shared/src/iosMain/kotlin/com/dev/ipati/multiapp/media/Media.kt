@@ -3,6 +3,7 @@ package com.dev.ipati.multiapp.media
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import platform.AVFoundation.AVPlayerItem
+import platform.AVFoundation.currentItem
 import platform.AVFoundation.pause
 import platform.AVFoundation.play
 import platform.AVFoundation.rate
@@ -14,7 +15,9 @@ actual object MediaPlayer : KoinComponent {
 
     actual fun play(uri: String) {
         val playerItem = AVPlayerItem(NSURL.fileURLWithPath(uri))
-        mediaWrapper.getAVPlayer().replaceCurrentItemWithPlayerItem(playerItem)
+        mediaWrapper.getAVPlayer().currentItem ?: run {
+            mediaWrapper.getAVPlayer().replaceCurrentItemWithPlayerItem(playerItem)
+        }
         if (mediaWrapper.getAVPlayer().rate() != 0f) {
             mediaWrapper.getAVPlayer().pause()
         } else {
