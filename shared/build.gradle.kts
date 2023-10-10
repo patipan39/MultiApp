@@ -35,7 +35,7 @@ kotlin {
                 implementation("androidx.media3:media3-ui:1.1.1")
 
                 //koin
-                api("io.insert-koin:koin-android:3.2.0")
+                api("io.insert-koin:koin-android:3.5.0")
             }
         }
         val commonMain by getting {
@@ -50,8 +50,8 @@ kotlin {
                 implementation("io.ktor:ktor-client-cio:2.3.4")
 
                 //koin
-                api("io.insert-koin:koin-core:3.2.0")
-                api("io.insert-koin:koin-test:3.2.0")
+                api("io.insert-koin:koin-core:3.5.0")
+                api("io.insert-koin:koin-test:3.5.0")
 
                 // compose multiplatform
                 api("dev.icerock.moko:mvvm-compose:0.16.1") // api mvvm-core, getViewModel for Compose Multiplatfrom

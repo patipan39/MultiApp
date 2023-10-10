@@ -1,5 +1,6 @@
 package com.dev.ipati.multiapp.di
 
+import io.ktor.utils.io.errors.IOException
 import org.koin.core.context.startKoin
 
 object KoinHelper {
