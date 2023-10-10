@@ -52,6 +52,11 @@ kotlin {
                 //koin
                 api("io.insert-koin:koin-core:3.2.0")
                 api("io.insert-koin:koin-test:3.2.0")
+
+                // compose multiplatform
+                api("dev.icerock.moko:mvvm-compose:0.16.1") // api mvvm-core, getViewModel for Compose Multiplatfrom
+                api("dev.icerock.moko:mvvm-flow-compose:0.16.1") // api mvvm-flow, binding extensions for Compose Multiplatfrom
+                api("dev.icerock.moko:mvvm-livedata-compose:0.16.1")
             }
         }
         val commonTest by getting {

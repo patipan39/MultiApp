@@ -23,7 +23,7 @@ actual object MediaPlayer : KoinComponent {
         )
     }
 
-    actual fun Play(uri: String) {
+    actual fun play(uri: String) {
         if (!exoPlayer.isPlaying) {
             exoPlayer.play()
         } else {

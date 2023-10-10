@@ -67,7 +67,7 @@ fun ControllerPlayer() {
 fun PauseIcon(onClicked: ((Boolean) -> Unit)? = null) {
     Row(
         modifier = Modifier.padding(vertical = 21.dp).clickable {
-            MediaPlayer.Play(
+            MediaPlayer.play(
                 "/Users/patipaninjai/AndroidStudioProjects/MultiApp/shared/src/commonMain/resources/raw/first_love.mp3"
             )
             onClicked?.invoke(true)
@@ -88,7 +88,7 @@ fun PlayIcon(onClicked: ((Boolean) -> Unit)? = null) {
     Row(
         modifier = Modifier.padding(20.dp)
             .clickable {
-                MediaPlayer.Play(
+                MediaPlayer.play(
                     "/Users/patipaninjai/AndroidStudioProjects/MultiApp/shared/src/commonMain/resources/raw/first_love.mp3"
                 )
                 onClicked?.invoke(false)
