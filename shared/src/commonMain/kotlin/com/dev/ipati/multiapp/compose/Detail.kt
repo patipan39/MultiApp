@@ -19,20 +19,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.unit.dp
-import com.dev.ipati.multiapp.CommonViewModel
 import com.dev.ipati.multiapp.media.MediaPlayer
 import com.dev.ipati.multiapp.res.PainterRes
 import com.dev.ipati.multiapp.style.FontWeight400
-import dev.icerock.moko.mvvm.compose.getViewModel
-import dev.icerock.moko.mvvm.compose.viewModelFactory
 
 @Composable
-fun Detail(
-    viewModel: CommonViewModel = getViewModel(
-        key = CommonViewModel::class.simpleName.orEmpty(),
-        factory = viewModelFactory { CommonViewModel() }
-    )
-) {
+fun Detail() {
     val progress = remember { mutableStateOf(Progress()) }
     Column(
         modifier = Modifier.padding(16.dp),
