@@ -1,5 +1,6 @@
 package com.dev.ipati.multiapp.media
 
+import androidx.compose.runtime.Composable
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import platform.AVFoundation.AVPlayerItem
@@ -27,5 +28,10 @@ actual object MediaPlayer : KoinComponent {
 
     actual fun isPlaying(): Boolean {
         return mediaWrapper.getAVPlayer().rate() != 0f
+    }
+
+    @Composable
+    actual fun onProgress(progress: (Float) -> Unit) {
+        progress(0f)
     }
 }

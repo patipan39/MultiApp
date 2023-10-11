@@ -12,16 +12,28 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.unit.dp
+import com.dev.ipati.multiapp.CommonViewModel
+import com.dev.ipati.multiapp.media.MediaPlayer
 import com.dev.ipati.multiapp.res.PainterRes
 import com.dev.ipati.multiapp.style.FontWeight400
+import dev.icerock.moko.mvvm.compose.getViewModel
+import dev.icerock.moko.mvvm.compose.viewModelFactory
 
 @Composable
-fun Detail() {
+fun Detail(
+    viewModel: CommonViewModel = getViewModel(
+        key = CommonViewModel::class.simpleName.orEmpty(),
+        factory = viewModelFactory { CommonViewModel() }
+    )
+) {
+    val progress = remember { mutableStateOf(Progress()) }
     Column(
         modifier = Modifier.padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(4.dp)
@@ -53,7 +65,7 @@ fun Detail() {
             backgroundColor = Color(0x66F2F2F2),
             color = Color(0xFF7A51E2),
             strokeCap = StrokeCap.Round,
-            progress = 50f / 100
+            progress = progress.value.progress / 100
         )
         Row(
             modifier = Modifier.padding(top = 4.dp),
@@ -73,6 +85,11 @@ fun Detail() {
                 )
             )
         }
+        MediaPlayer.onProgress {
+            progress.value = Progress(it)
+        }
         ControllerPlayer()
     }
 }
+
+class Progress(val progress: Float = 0f)

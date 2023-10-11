@@ -8,10 +8,10 @@ plugins {
 kotlin {
     targetHierarchy.default()
 
-    android {
+    androidTarget {
         compilations.all {
             kotlinOptions {
-                jvmTarget = "1.8"
+                jvmTarget = "17"
             }
         }
     }
@@ -46,6 +46,7 @@ kotlin {
                 implementation(compose.material)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
+
                 api("io.github.qdsfdhvh:image-loader:1.6.5")
                 implementation("io.ktor:ktor-client-cio:2.3.4")
 
@@ -57,6 +58,9 @@ kotlin {
                 api("dev.icerock.moko:mvvm-compose:0.16.1") // api mvvm-core, getViewModel for Compose Multiplatfrom
                 api("dev.icerock.moko:mvvm-flow-compose:0.16.1") // api mvvm-flow, binding extensions for Compose Multiplatfrom
                 api("dev.icerock.moko:mvvm-livedata-compose:0.16.1")
+
+                //viewModel
+                api("dev.icerock.moko:mvvm-core:0.16.1")
             }
         }
         val commonTest by getting {
@@ -77,5 +81,9 @@ android {
 
     sourceSets["main"].apply {
         res.srcDirs("src/androidMain/res", "src/commonMain/resources")
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }
