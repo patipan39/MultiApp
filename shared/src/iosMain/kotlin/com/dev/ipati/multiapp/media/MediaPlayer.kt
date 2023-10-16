@@ -26,7 +26,7 @@ actual object MediaPlayer : KoinComponent {
         mediaWrapper.getAVPlayer().currentItem ?: run {
             mediaWrapper.getAVPlayer().replaceCurrentItemWithPlayerItem(playerItem)
         }
-        if (mediaWrapper.getAVPlayer().rate() != 0f) {
+        if (isPlaying()) {
             mediaWrapper.getAVPlayer().pause()
         } else {
             mediaWrapper.getAVPlayer().play()
@@ -34,7 +34,8 @@ actual object MediaPlayer : KoinComponent {
     }
 
     actual fun isPlaying(): Boolean {
-        return mediaWrapper.getAVPlayer().rate() != 0f
+        return mediaWrapper.getAVPlayer().rate != 0f
+                && mediaWrapper.getAVPlayer().error == null
     }
 
     @OptIn(ExperimentalForeignApi::class)
@@ -42,8 +43,8 @@ actual object MediaPlayer : KoinComponent {
     actual fun onProgress(progress: (Float) -> Unit) {
         val player = mediaWrapper.getAVPlayer()
         LaunchedEffect(isPlaying()) {
-            delay(1000L)
             while (true) {
+                delay(1000L)
                 player.currentItem?.let {
                     val duration = CMTimeGetSeconds(it.duration)
                     val time = CMTimeGetSeconds(it.currentTime())
