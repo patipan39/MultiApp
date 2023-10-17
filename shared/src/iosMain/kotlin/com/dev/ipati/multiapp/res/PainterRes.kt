@@ -52,4 +52,7 @@ actual object PainterRes {
 
     @Composable
     actual fun iconPause(): Painter = painterResource("drawable/ic_pause.xml")
+
+    @Composable
+    actual fun iconMusic(): Painter = painterResource("drawable/ic_music.xml")
 }

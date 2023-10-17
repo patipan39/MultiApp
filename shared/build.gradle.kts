@@ -61,6 +61,9 @@ kotlin {
 
                 //viewModel
                 api("dev.icerock.moko:mvvm-core:0.16.1")
+
+                //Firebase
+                implementation("dev.gitlive:firebase-database:1.10.0")
             }
         }
         val commonTest by getting {

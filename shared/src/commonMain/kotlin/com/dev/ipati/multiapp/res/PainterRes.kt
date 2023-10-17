@@ -48,4 +48,7 @@ expect object PainterRes {
 
     @Composable
     fun iconPause(): Painter
+
+    @Composable
+    fun iconMusic(): Painter
 }

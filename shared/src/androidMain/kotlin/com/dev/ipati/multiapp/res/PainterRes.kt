@@ -50,4 +50,7 @@ actual object PainterRes {
 
     @Composable
     actual fun iconPause(): Painter = painterResource(R.drawable.ic_pause)
+
+    @Composable
+    actual fun iconMusic(): Painter = painterResource(R.drawable.ic_music)
 }
