@@ -1,4 +1,4 @@
-package com.dev.ipati.multiapp
+package com.dev.ipati.multiapp.compose
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -25,8 +25,6 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import com.dev.ipati.multiapp.compose.BottomMenu
-import com.dev.ipati.multiapp.compose.Detail
 import com.dev.ipati.multiapp.res.PainterRes
 import com.dev.ipati.multiapp.style.FontWeight400
 import com.seiko.imageloader.rememberImagePainter

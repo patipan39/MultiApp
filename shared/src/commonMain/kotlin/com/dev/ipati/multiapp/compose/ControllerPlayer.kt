@@ -21,13 +21,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.unit.dp
 import com.dev.ipati.multiapp.media.MediaPlayer
 import com.dev.ipati.multiapp.res.PainterRes
 
 @Composable
 fun ControllerPlayer() {
-    val isPlayState = remember { mutableStateOf(StatePlayer()) }
+    val inspectionMode = LocalInspectionMode.current
+    val isPlayState = remember { mutableStateOf(StatePlayer(false)) }
     Row(
         modifier = Modifier,
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -48,11 +50,21 @@ fun ControllerPlayer() {
         ) {
             if (isPlayState.value.isPlay) {
                 PauseIcon {
-                    isPlayState.value = StatePlayer()
+                    val isPlay = if (!inspectionMode) {
+                        MediaPlayer.isPlaying()
+                    } else {
+                        false
+                    }
+                    isPlayState.value = StatePlayer(isPlay)
                 }
             } else {
                 PlayIcon {
-                    isPlayState.value = StatePlayer()
+                    val isPlay = if (!inspectionMode) {
+                        MediaPlayer.isPlaying()
+                    } else {
+                        false
+                    }
+                    isPlayState.value = StatePlayer(isPlay)
                 }
             }
         }
@@ -65,11 +77,14 @@ fun ControllerPlayer() {
 
 @Composable
 fun PauseIcon(onClicked: ((Boolean) -> Unit)? = null) {
+    val isInspectionMode = LocalInspectionMode.current
     Row(
         modifier = Modifier.padding(vertical = 21.dp).clickable {
-            MediaPlayer.play(
-                "/Users/patipaninjai/AndroidStudioProjects/MultiApp/shared/src/commonMain/resources/raw/first_love.mp3"
-            )
+            if (!isInspectionMode) {
+                MediaPlayer.play(
+                    "/Users/patipaninjai/AndroidStudioProjects/MultiApp/shared/src/commonMain/resources/raw/first_love.mp3"
+                )
+            }
             onClicked?.invoke(true)
         },
         horizontalArrangement = Arrangement.Center
@@ -85,12 +100,15 @@ fun PauseIcon(onClicked: ((Boolean) -> Unit)? = null) {
 
 @Composable
 fun PlayIcon(onClicked: ((Boolean) -> Unit)? = null) {
+    val isInspectionMode = LocalInspectionMode.current
     Row(
         modifier = Modifier.padding(20.dp)
             .clickable {
-                MediaPlayer.play(
-                    "/Users/patipaninjai/AndroidStudioProjects/MultiApp/shared/src/commonMain/resources/raw/first_love.mp3"
-                )
+                if (!isInspectionMode) {
+                    MediaPlayer.play(
+                        "/Users/patipaninjai/AndroidStudioProjects/MultiApp/shared/src/commonMain/resources/raw/first_love.mp3"
+                    )
+                }
                 onClicked?.invoke(false)
             },
         horizontalArrangement = Arrangement.Center
@@ -104,4 +122,4 @@ fun PlayIcon(onClicked: ((Boolean) -> Unit)? = null) {
     }
 }
 
-class StatePlayer(val isPlay: Boolean = MediaPlayer.isPlaying())
+class StatePlayer(val isPlay: Boolean)

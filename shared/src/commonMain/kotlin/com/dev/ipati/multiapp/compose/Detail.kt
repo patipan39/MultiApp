@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.unit.dp
 import com.dev.ipati.multiapp.media.MediaPlayer
 import com.dev.ipati.multiapp.res.PainterRes
@@ -77,8 +78,10 @@ fun Detail() {
                 )
             )
         }
-        MediaPlayer.onProgress {
-            progress.value = Progress(it)
+        if (!LocalInspectionMode.current) {
+            MediaPlayer.onProgress {
+                progress.value = Progress(it)
+            }
         }
         ControllerPlayer()
     }
