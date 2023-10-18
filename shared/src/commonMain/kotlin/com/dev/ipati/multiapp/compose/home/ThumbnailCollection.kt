@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -27,8 +28,9 @@ import com.dev.ipati.multiapp.res.PainterRes
 import com.dev.ipati.multiapp.style.FontWeight400
 import com.seiko.imageloader.rememberImagePainter
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun ThumbnailCollection() {
+fun ThumbnailCollection(onClickedItem: (() -> Unit)? = null) {
     val listThumbnail = mutableListOf("Item", "Item", "Item", "Item", "Item")
     val image = rememberImagePainter(
         "https://www.khaosod.co.th/wpapp/uploads/2023/06/ent15p1-6.jpg"
@@ -44,6 +46,9 @@ fun ThumbnailCollection() {
                 shape = RoundedCornerShape(25.dp),
                 color = Color.Transparent,
                 contentColor = Color.Transparent,
+                onClick = {
+                    onClickedItem?.invoke()
+                }
             ) {
                 Image(
                     painter = image,

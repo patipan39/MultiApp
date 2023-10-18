@@ -30,7 +30,7 @@ import com.dev.ipati.multiapp.style.FontWeight400
 import com.seiko.imageloader.rememberImagePainter
 
 @Composable
-fun App() {
+fun App(onBack: (() -> Unit)? = null) {
     Column(
         Modifier.fillMaxSize()
             .background(
@@ -43,14 +43,14 @@ fun App() {
             ),
         verticalArrangement = Arrangement.SpaceAround
     ) {
-        AppToolbar()
+        AppToolbar(onBack)
         Thumbnail()
         BottomMenu()
     }
 }
 
 @Composable
-fun AppToolbar() {
+fun AppToolbar(onBack: (() -> Unit)? = null) {
     Row(
         Modifier
             .fillMaxWidth()
@@ -60,7 +60,7 @@ fun AppToolbar() {
     ) {
         Box(modifier = Modifier.weight(1f).align(Alignment.CenterVertically)) {
             IconButton(onClick = {
-                //handle click
+                onBack?.invoke()
             }) {
                 Image(
                     painter = PainterRes.iconBack(),

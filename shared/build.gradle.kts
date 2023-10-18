@@ -61,6 +61,11 @@ kotlin {
 
                 //viewModel
                 api("dev.icerock.moko:mvvm-core:0.16.1")
+
+
+                api("me.dmdev.premo:premo:1.0.0-alpha.11")
+                api("me.dmdev.premo:premo-navigation:1.0.0-alpha.11")
+                api("me.dmdev.premo:premo-saver-json:1.0.0-alpha.11")
             }
         }
         val commonTest by getting {

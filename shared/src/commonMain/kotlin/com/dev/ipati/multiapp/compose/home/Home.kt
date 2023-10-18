@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.dp
 import com.dev.ipati.multiapp.style.FontWeight400
 
 @Composable
-fun Home() {
+fun Home(onClickedItem: (() -> Unit)? = null) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -53,7 +53,7 @@ fun Home() {
                 text = "Hi Guest"
             )
             SearchField()
-            ThumbnailCollection()
+            ThumbnailCollection(onClickedItem)
         }
     }
 }
