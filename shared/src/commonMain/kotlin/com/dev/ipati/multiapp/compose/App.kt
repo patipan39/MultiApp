@@ -25,9 +25,10 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import com.dev.ipati.multiapp.res.PainterRes
 import com.dev.ipati.multiapp.style.FontWeight400
+import com.multi.resource.SharedRes
 import com.seiko.imageloader.rememberImagePainter
+import dev.icerock.moko.resources.compose.painterResource
 
 @Composable
 fun App(onBack: (() -> Unit)? = null) {
@@ -63,7 +64,7 @@ fun AppToolbar(onBack: (() -> Unit)? = null) {
                 onBack?.invoke()
             }) {
                 Image(
-                    painter = PainterRes.iconBack(),
+                    painter = painterResource(SharedRes.images.ic_back),
                     contentDescription = null
                 )
             }
@@ -93,12 +94,12 @@ fun AppToolbar(onBack: (() -> Unit)? = null) {
         ) {
             Image(
                 modifier = Modifier.padding(end = 8.dp),
-                painter = PainterRes.iconHeart(),
+                painter = painterResource(SharedRes.images.ic_heart),
                 contentDescription = null,
                 alignment = Alignment.CenterEnd
             )
             Image(
-                painter = PainterRes.iconMenu(),
+                painter = painterResource(SharedRes.images.ic_menu),
                 contentDescription = null,
                 alignment = Alignment.CenterEnd
             )

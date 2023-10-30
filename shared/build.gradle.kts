@@ -2,6 +2,7 @@ plugins {
     kotlin("multiplatform")
     id("com.android.library")
     id("org.jetbrains.compose")
+    id("dev.icerock.mobile.multiplatform-resources")
 }
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
@@ -22,6 +23,7 @@ kotlin {
         iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
+            binaryOption("bundleId", "com.dev.ipati.multiapp.shared")
             baseName = "shared"
             isStatic = true
         }
@@ -29,6 +31,7 @@ kotlin {
 
     sourceSets {
         val androidMain by getting {
+            dependsOn(commonMain.get())
             dependencies {
                 implementation("androidx.media3:media3-exoplayer:1.1.1")
                 implementation("androidx.media3:media3-exoplayer-dash:1.1.1")
@@ -62,10 +65,12 @@ kotlin {
                 //viewModel
                 api("dev.icerock.moko:mvvm-core:0.16.1")
 
-
                 api("me.dmdev.premo:premo:1.0.0-alpha.11")
                 api("me.dmdev.premo:premo-navigation:1.0.0-alpha.11")
                 api("me.dmdev.premo:premo-saver-json:1.0.0-alpha.11")
+
+                api("dev.icerock.moko:resources:0.23.0")
+                api("dev.icerock.moko:resources-compose:0.23.0")
             }
         }
         val commonTest by getting {
@@ -83,7 +88,6 @@ android {
     defaultConfig {
         minSdk = 24
     }
-
     sourceSets["main"].apply {
         res.srcDirs("src/androidMain/res", "src/commonMain/resources")
     }
@@ -91,4 +95,9 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
+}
+
+multiplatformResources {
+    multiplatformResourcesPackage = "com.multi.resource"
+    multiplatformResourcesClassName = "SharedRes"
 }

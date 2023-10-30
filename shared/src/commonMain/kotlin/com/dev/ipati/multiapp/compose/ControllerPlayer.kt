@@ -24,7 +24,8 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.unit.dp
 import com.dev.ipati.multiapp.media.MediaPlayer
-import com.dev.ipati.multiapp.res.PainterRes
+import com.multi.resource.SharedRes
+import dev.icerock.moko.resources.compose.painterResource
 
 @Composable
 fun ControllerPlayer() {
@@ -35,9 +36,9 @@ fun ControllerPlayer() {
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Image(painter = PainterRes.iconSubTitle(), contentDescription = null)
+        Image(painter = painterResource(SharedRes.images.ic_subtitle), contentDescription = null)
         Spacer(Modifier.weight(1f))
-        Image(painter = PainterRes.iconPrevious(), contentDescription = null)
+        Image(painter = painterResource(SharedRes.images.ic_previous), contentDescription = null)
         Spacer(Modifier.weight(1f))
         Card(
             modifier = Modifier
@@ -69,7 +70,7 @@ fun ControllerPlayer() {
             }
         }
         Spacer(Modifier.weight(1f))
-        Image(painter = PainterRes.iconNext(), contentDescription = null)
+        Image(painter = painterResource(SharedRes.images.ic_next), contentDescription = null)
         Spacer(Modifier.weight(1f))
         Spacer(Modifier.size(25.dp))
     }
@@ -90,7 +91,7 @@ fun PauseIcon(onClicked: ((Boolean) -> Unit)? = null) {
         horizontalArrangement = Arrangement.Center
     ) {
         Image(
-            painter = PainterRes.iconPause(),
+            painter = painterResource(SharedRes.images.ic_pause),
             modifier = Modifier.fillMaxSize(),
             colorFilter = ColorFilter.tint(Color(0xFF383344)),
             contentDescription = null
@@ -114,7 +115,7 @@ fun PlayIcon(onClicked: ((Boolean) -> Unit)? = null) {
         horizontalArrangement = Arrangement.Center
     ) {
         Image(
-            painter = PainterRes.iconPlay(),
+            painter = painterResource(SharedRes.images.ic_play),
             modifier = Modifier.fillMaxSize(),
             colorFilter = ColorFilter.tint(Color(0xFF383344)),
             contentDescription = null

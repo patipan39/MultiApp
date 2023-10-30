@@ -4,6 +4,7 @@ plugins {
     id("com.android.library").version("8.1.1").apply(false)
     kotlin("android").apply(false)
     kotlin("multiplatform").apply(false)
+    id("dev.icerock.mobile.multiplatform-resources").version("0.23.0").apply(false)
     id("org.jetbrains.compose").apply(false)
 }
 

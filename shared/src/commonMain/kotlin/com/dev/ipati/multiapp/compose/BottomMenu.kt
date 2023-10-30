@@ -8,7 +8,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.dev.ipati.multiapp.res.PainterRes
+import com.multi.resource.SharedRes
+import dev.icerock.moko.resources.compose.painterResource
 
 @Composable
 fun BottomMenu() {
@@ -16,14 +17,14 @@ fun BottomMenu() {
         modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 16.dp),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Image(PainterRes.iconRepeat(), contentDescription = null)
+        Image(painterResource(SharedRes.images.ic_repeat), contentDescription = null)
         Spacer(Modifier.weight(1f))
-        Image(PainterRes.iconSetting(), contentDescription = null)
+        Image(painterResource(SharedRes.images.ic_settings), contentDescription = null)
         Spacer(Modifier.weight(1f))
-        Image(PainterRes.iconText(), contentDescription = null)
+        Image(painterResource(SharedRes.images.ic_text), contentDescription = null)
         Spacer(Modifier.weight(1f))
-        Image(PainterRes.iconTimer(), contentDescription = null)
+        Image(painterResource(SharedRes.images.ic_timer), contentDescription = null)
         Spacer(Modifier.weight(1f))
-        Image(PainterRes.iconShuffle(), contentDescription = null)
+        Image(painterResource(SharedRes.images.ic_shuffle), contentDescription = null)
     }
 }

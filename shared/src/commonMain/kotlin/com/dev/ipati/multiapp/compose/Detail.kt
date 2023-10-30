@@ -21,8 +21,9 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.unit.dp
 import com.dev.ipati.multiapp.media.MediaPlayer
-import com.dev.ipati.multiapp.res.PainterRes
 import com.dev.ipati.multiapp.style.FontWeight400
+import com.multi.resource.SharedRes
+import dev.icerock.moko.resources.compose.painterResource
 
 @Composable
 fun Detail() {
@@ -36,11 +37,11 @@ fun Detail() {
             Spacer(modifier = Modifier.weight(1f))
             Image(
                 modifier = Modifier.padding(horizontal = 8.dp),
-                painter = PainterRes.iconShare(),
+                painter = painterResource(SharedRes.images.ic_share),
                 contentDescription = null
             )
             Image(
-                painter = PainterRes.iconDots(),
+                painter = painterResource(SharedRes.images.ic_dots),
                 contentDescription = null
             )
         }

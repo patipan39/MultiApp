@@ -24,9 +24,10 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import com.dev.ipati.multiapp.res.PainterRes
 import com.dev.ipati.multiapp.style.FontWeight400
+import com.multi.resource.SharedRes
 import com.seiko.imageloader.rememberImagePainter
+import dev.icerock.moko.resources.compose.painterResource
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -92,7 +93,7 @@ fun ThumbnailCollection(onClickedItem: (() -> Unit)? = null) {
                                 modifier = Modifier
                                     .wrapContentSize()
                                     .size(12.dp, 12.dp),
-                                painter = PainterRes.iconMusic(),
+                                painter = painterResource(SharedRes.images.ic_music),
                                 contentDescription = null
                             )
                             Text(
