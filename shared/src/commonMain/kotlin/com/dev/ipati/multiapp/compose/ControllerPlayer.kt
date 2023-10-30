@@ -83,7 +83,8 @@ fun PauseIcon(onClicked: ((Boolean) -> Unit)? = null) {
         modifier = Modifier.padding(vertical = 21.dp).clickable {
             if (!isInspectionMode) {
                 MediaPlayer.play(
-                    "/Users/patipaninjai/AndroidStudioProjects/MultiApp/shared/src/commonMain/resources/raw/first_love.mp3"
+                    //Todo: implement url music
+                    ""
                 )
             }
             onClicked?.invoke(true)
@@ -107,7 +108,7 @@ fun PlayIcon(onClicked: ((Boolean) -> Unit)? = null) {
             .clickable {
                 if (!isInspectionMode) {
                     MediaPlayer.play(
-                        "/Users/patipaninjai/AndroidStudioProjects/MultiApp/shared/src/commonMain/resources/raw/first_love.mp3"
+                        ""
                     )
                 }
                 onClicked?.invoke(false)

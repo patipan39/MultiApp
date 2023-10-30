@@ -88,9 +88,10 @@ android {
     defaultConfig {
         minSdk = 24
     }
-    sourceSets["main"].apply {
-        res.srcDirs("src/androidMain/res", "src/commonMain/resources")
-    }
+    //old implement
+//    sourceSets["main"].apply {
+//        res.srcDirs("src/androidMain/res", "src/commonMain/resources")
+//    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17

@@ -2,12 +2,14 @@ package com.dev.ipati.multiapp.media
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.core.net.toUri
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.datasource.RawResourceDataSource
 import androidx.media3.exoplayer.ExoPlayer
 import com.dev.ipati.multiapp.R
+import com.multi.resource.SharedRes
 import kotlinx.coroutines.delay
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -19,9 +21,8 @@ actual object MediaPlayer : KoinComponent {
     init {
         exoPlayer.currentMediaItem ?: run {
             val mediaItem = MediaItem.fromUri(
-                RawResourceDataSource.buildRawResourceUri(
-                    R.raw.first_love
-                )
+                //Todo: implement url music
+                ""
             )
             exoPlayer.setMediaItem(mediaItem)
             exoPlayer.prepare()
