@@ -1,0 +1,48 @@
+[versions]
+android-application-version = "8.1.1"
+koin-version = "3.5.0"
+compose-mvvm-version = "0.16.1"
+media3-exoplayer = "1.1.1"
+moko-resource-version = "0.23.0"
+image-loader-version = "1.6.5"
+ktor-client-version = "2.3.4"
+kotin-version = "1.9.0"
+multipleplatform-resource-version = "0.23.0"
+compose-multipleplatform-version = "1.5.0"
+compose-android-version = "1.5.4"
+compose-activity-version = "1.8.0"
+
+[libraries]
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin-version" }
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin-version" }
+koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin-version" }
+
+compose-android-ui = { module = "androidx.compose.ui:ui", version.ref = "compose-android-version" }
+compose-android-tools = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose-android-version" }
+compose-android-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose-android-version" }
+compose-android-material = { module = "androidx.compose.material:material", version.ref = "compose-android-version" }
+compose-android-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose-android-version" }
+compose-android-activity = { module = "androidx.activity:activity-compose", version.ref = "compose-activity-version" }
+
+compose-mvvm = { module = "dev.icerock.moko:mvvm-compose", version.ref = "compose-mvvm-version" }
+compose-flow = { module = "dev.icerock.moko:mvvm-flow-compose", version.ref = "compose-mvvm-version" }
+compose-livedata = { module = "dev.icerock.moko:mvvm-livedata-compose", version.ref = "compose-mvvm-version" }
+compose-core = { module = "dev.icerock.moko:mvvm-core", version.ref = "compose-mvvm-version" }
+
+media3-exoplayer = { module = "androidx.media3:media3-exoplayer", version.ref = "media3-exoplayer" }
+media3-exoplayer-dash = { module = "androidx.media3:media3-exoplayer-dash", version.ref = "media3-exoplayer" }
+media3-ui = { module = "androidx.media3:media3-ui", version.ref = "media3-exoplayer" }
+
+moko-resource = { module = "dev.icerock.moko:resources", version.ref = "moko-resource-version" }
+moko-compose = { module = "dev.icerock.moko:resources-compose", version.ref = "moko-resource-version" }
+
+image-loader = { module = "io.github.qdsfdhvh:image-loader", version.ref = "image-loader-version" }
+ktor-client = { module = "io.ktor:ktor-client-cio", version.ref = "ktor-client-version" }
+
+[plugins]
+application = { id = "com.android.application", version.ref = "android-application-version" }
+library = { id = "com.android.library", version.ref = "android-application-version" }
+android = { id = "org.jetbrains.kotlin.android", version.ref = "kotin-version" }
+multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotin-version" }
+multiplatform-resource = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "multipleplatform-resource-version" }
+composemultipleplatform = { id = "org.jetbrains.compose", version.ref = "compose-multipleplatform-version" }

@@ -1,11 +1,13 @@
+@file:Suppress("DSL_SCOPE_VIOLATION")
+
 plugins {
     //trick: for the same plugin versions in all sub-modules
-    id("com.android.application").version("8.1.1").apply(false)
-    id("com.android.library").version("8.1.1").apply(false)
-    kotlin("android").apply(false)
-    kotlin("multiplatform").apply(false)
-    id("dev.icerock.mobile.multiplatform-resources").version("0.23.0").apply(false)
-    id("org.jetbrains.compose").apply(false)
+    alias(libs.plugins.application).apply(false)
+    alias(libs.plugins.library).apply(false)
+    alias(libs.plugins.android).apply(false)
+    alias(libs.plugins.multiplatform).apply(false)
+    alias(libs.plugins.multiplatform.resource).apply(false)
+    alias(libs.plugins.composemultipleplatform).apply(false)
 }
 
 tasks.register("clean", Delete::class) {

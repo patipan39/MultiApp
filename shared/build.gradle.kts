@@ -33,12 +33,12 @@ kotlin {
         val androidMain by getting {
             dependsOn(commonMain.get())
             dependencies {
-                implementation("androidx.media3:media3-exoplayer:1.1.1")
-                implementation("androidx.media3:media3-exoplayer-dash:1.1.1")
-                implementation("androidx.media3:media3-ui:1.1.1")
+                implementation(libs.media3.exoplayer)
+                implementation(libs.media3.exoplayer.dash)
+                implementation(libs.media3.ui)
 
                 //koin
-                api("io.insert-koin:koin-android:3.5.0")
+                api(libs.koin.android)
             }
         }
         val commonMain by getting {
@@ -50,27 +50,23 @@ kotlin {
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
 
-                api("io.github.qdsfdhvh:image-loader:1.6.5")
-                implementation("io.ktor:ktor-client-cio:2.3.4")
+                api(libs.image.loader)
+                implementation(libs.ktor.client)
 
                 //koin
-                api("io.insert-koin:koin-core:3.5.0")
-                api("io.insert-koin:koin-test:3.5.0")
+                api(libs.koin.core)
+                api(libs.koin.test)
 
                 // compose multiplatform
-                api("dev.icerock.moko:mvvm-compose:0.16.1") // api mvvm-core, getViewModel for Compose Multiplatfrom
-                api("dev.icerock.moko:mvvm-flow-compose:0.16.1") // api mvvm-flow, binding extensions for Compose Multiplatfrom
-                api("dev.icerock.moko:mvvm-livedata-compose:0.16.1")
+                api(libs.compose.mvvm) // api mvvm-core, getViewModel for Compose Multiplatfrom
+                api(libs.compose.flow) // api mvvm-flow, binding extensions for Compose Multiplatfrom
+                api(libs.compose.livedata)
 
                 //viewModel
-                api("dev.icerock.moko:mvvm-core:0.16.1")
+                api(libs.compose.core)
 
-                api("me.dmdev.premo:premo:1.0.0-alpha.11")
-                api("me.dmdev.premo:premo-navigation:1.0.0-alpha.11")
-                api("me.dmdev.premo:premo-saver-json:1.0.0-alpha.11")
-
-                api("dev.icerock.moko:resources:0.23.0")
-                api("dev.icerock.moko:resources-compose:0.23.0")
+                api(libs.moko.resource)
+                api(libs.moko.compose)
             }
         }
         val commonTest by getting {
@@ -88,10 +84,6 @@ android {
     defaultConfig {
         minSdk = 24
     }
-    //old implement
-//    sourceSets["main"].apply {
-//        res.srcDirs("src/androidMain/res", "src/commonMain/resources")
-//    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
