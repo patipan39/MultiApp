@@ -1,8 +1,10 @@
+@file:Suppress("DSL_SCOPE_VIOLATION")
+
 plugins {
-    kotlin("multiplatform")
-    id("com.android.library")
-    id("org.jetbrains.compose")
-    id("dev.icerock.mobile.multiplatform-resources")
+    alias(libs.plugins.multiplatform)
+    alias(libs.plugins.library)
+    alias(libs.plugins.composemultipleplatform)
+    alias(libs.plugins.multiplatform.resource)
 }
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
