@@ -6,7 +6,7 @@ object KoinHelper {
     fun doInitKoin() {
         startKoin {
             modules(
-                PlatformModule.initialModule()
+                PlatformModule.initialModule() + commonModule
             )
         }
     }

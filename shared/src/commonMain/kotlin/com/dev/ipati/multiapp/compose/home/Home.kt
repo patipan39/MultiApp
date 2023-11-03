@@ -18,17 +18,38 @@ import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.currentCompositionLocalContext
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.unit.dp
+import com.dev.ipati.multiapp.CommonViewModel
 import com.dev.ipati.multiapp.style.FontWeight400
+import dev.icerock.moko.mvvm.compose.ViewModelFactory
+import dev.icerock.moko.mvvm.compose.getViewModel
+import dev.icerock.moko.mvvm.compose.viewModelFactory
+import org.koin.mp.KoinPlatform
 
 @Composable
 fun Home(onClickedItem: (() -> Unit)? = null) {
+    val albumState = if (!LocalInspectionMode.current) {
+        val viewModel = getViewModel(
+            Unit,
+            viewModelFactory {
+                CommonViewModel(
+                    albumUseCase = KoinPlatform.getKoin().get()
+                )
+            })
+        val albumState by viewModel.stateAlbum
+        albumState
+    } else {
+        null
+    }
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -50,7 +71,7 @@ fun Home(onClickedItem: (() -> Unit)? = null) {
             Text(
                 modifier = Modifier.padding(16.dp),
                 style = FontWeight400(textSize = 32),
-                text = "Hi Guest"
+                text = "$albumState"
             )
             SearchField()
             ThumbnailCollection(onClickedItem)
