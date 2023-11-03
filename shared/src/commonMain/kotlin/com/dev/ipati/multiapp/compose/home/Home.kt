@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -18,38 +17,35 @@ import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.currentCompositionLocalContext
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.unit.dp
 import com.dev.ipati.multiapp.CommonViewModel
+import com.dev.ipati.multiapp.Result
 import com.dev.ipati.multiapp.style.FontWeight400
-import dev.icerock.moko.mvvm.compose.ViewModelFactory
 import dev.icerock.moko.mvvm.compose.getViewModel
 import dev.icerock.moko.mvvm.compose.viewModelFactory
 import org.koin.mp.KoinPlatform
 
 @Composable
-fun Home(onClickedItem: (() -> Unit)? = null) {
-    val albumState = if (!LocalInspectionMode.current) {
-        val viewModel = getViewModel(
-            Unit,
-            viewModelFactory {
-                CommonViewModel(
-                    albumUseCase = KoinPlatform.getKoin().get()
-                )
-            })
-        val albumState by viewModel.stateAlbum
-        albumState
-    } else {
-        null
-    }
+fun BaseHome(onClickedItem: (() -> Unit)? = null) {
+    val viewModel: CommonViewModel = getViewModel(
+        Unit, viewModelFactory {
+            CommonViewModel(KoinPlatform.getKoin().get())
+        })
+    val state by viewModel.stateAlbum
+    Home(state, onClickedItem)
+}
+
+@Composable
+fun Home(
+    albumState: Result = Result.Success,
+    onClickedItem: (() -> Unit)? = null
+) {
     Box(
         modifier = Modifier
             .fillMaxWidth()

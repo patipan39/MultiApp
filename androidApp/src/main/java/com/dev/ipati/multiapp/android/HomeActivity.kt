@@ -9,6 +9,7 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.dev.ipati.multiapp.compose.home.BaseHome
 import com.dev.ipati.multiapp.compose.home.Home
 
 class HomeActivity : ComponentActivity() {
@@ -20,7 +21,7 @@ class HomeActivity : ComponentActivity() {
                     modifier = Modifier
                         .fillMaxSize()
                 ) {
-                    Home {
+                    BaseHome {
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
                     }

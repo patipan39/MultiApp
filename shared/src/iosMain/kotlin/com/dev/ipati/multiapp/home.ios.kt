@@ -1,7 +1,6 @@
 import androidx.compose.ui.window.ComposeUIViewController
-import com.dev.ipati.multiapp.MainViewController
-import com.dev.ipati.multiapp.compose.home.Home
+import com.dev.ipati.multiapp.compose.home.BaseHome
 
 fun HomeViewController(onClickedItem: (() -> Unit)) = ComposeUIViewController {
-    Home(onClickedItem)
+    BaseHome(onClickedItem)
 }
