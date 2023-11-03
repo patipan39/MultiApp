@@ -9,7 +9,7 @@ plugins {
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
 kotlin {
-    targetHierarchy.default()
+    applyDefaultHierarchyTemplate()
 
     androidTarget {
         compilations.all {
@@ -38,9 +38,9 @@ kotlin {
                 implementation(libs.media3.exoplayer)
                 implementation(libs.media3.exoplayer.dash)
                 implementation(libs.media3.ui)
-
-                //koin
-                api(libs.koin.android)
+                implementation(libs.ktor.client.okttp)
+                implementation(libs.coroutine.android)
+                implementation(libs.koin.android)
             }
         }
         val commonMain by getting {
@@ -52,23 +52,31 @@ kotlin {
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
 
-                api(libs.image.loader)
+                implementation(libs.image.loader)
                 implementation(libs.ktor.client)
 
                 //koin
-                api(libs.koin.core)
-                api(libs.koin.test)
+                implementation(libs.koin.core)
+                implementation(libs.koin.test)
 
                 // compose multiplatform
-                api(libs.compose.mvvm) // api mvvm-core, getViewModel for Compose Multiplatfrom
-                api(libs.compose.flow) // api mvvm-flow, binding extensions for Compose Multiplatfrom
-                api(libs.compose.livedata)
+                implementation(libs.compose.mvvm) // api mvvm-core, getViewModel for Compose Multiplatfrom
+                implementation(libs.compose.flow) // api mvvm-flow, binding extensions for Compose Multiplatfrom
+                implementation(libs.compose.livedata)
 
                 //viewModel
-                api(libs.compose.core)
+                implementation(libs.compose.core)
 
-                api(libs.moko.resource)
-                api(libs.moko.compose)
+                implementation(libs.moko.resource)
+                implementation(libs.moko.compose)
+
+                implementation(libs.ktor.client.core)
+                implementation(libs.coroutine.core)
+            }
+        }
+        val iosMain by getting {
+            dependencies {
+                implementation(libs.ktor.client.darwin)
             }
         }
         val commonTest by getting {
@@ -76,7 +84,6 @@ kotlin {
                 implementation(kotlin("test"))
             }
         }
-        val iosMain by getting
     }
 }
 

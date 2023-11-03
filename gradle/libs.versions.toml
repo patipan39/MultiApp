@@ -12,6 +12,8 @@ compose-multipleplatform-version = "1.5.10"
 compose-android-version = "1.5.4"
 compose-activity-version = "1.8.0"
 compose-compileversion = "1.5.4-dev-k1.9.20-50f08dfa4b4"
+ktor-version = "2.3.5"
+coroutine-version = "1.7.3"
 
 [libraries]
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin-version" }
@@ -39,6 +41,13 @@ moko-compose = { module = "dev.icerock.moko:resources-compose", version.ref = "m
 
 image-loader = { module = "io.github.qdsfdhvh:image-loader", version.ref = "image-loader-version" }
 ktor-client = { module = "io.ktor:ktor-client-cio", version.ref = "ktor-client-version" }
+
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor-client-version" }
+ktor-client-okttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor-client-version" }
+ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor-client-version" }
+
+coroutine-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutine-version" }
+coroutine-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutine-version" }
 
 [plugins]
 application = { id = "com.android.application", version.ref = "android-application-version" }

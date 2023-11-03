@@ -42,10 +42,11 @@ android {
 
 dependencies {
     implementation(project(":shared"))
-    implementation(libs.compose.android.ui)
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
+
     implementation(libs.compose.android.tools)
     implementation(libs.compose.android.preview)
     implementation(libs.compose.android.material)
-    implementation(libs.compose.android.foundation)
     implementation(libs.compose.android.activity)
 }
