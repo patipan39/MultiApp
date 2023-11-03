@@ -10,6 +10,10 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        //for get compose compiler for kotlin 1.9.20
+        maven {
+            url = uri("https://androidx.dev/storage/compose-compiler/repository/")
+        }
     }
 }
 

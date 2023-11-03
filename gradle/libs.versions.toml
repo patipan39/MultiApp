@@ -6,11 +6,12 @@ media3-exoplayer = "1.1.1"
 moko-resource-version = "0.23.0"
 image-loader-version = "1.6.5"
 ktor-client-version = "2.3.4"
-kotin-version = "1.9.0"
+kotin-version = "1.9.20"
 multipleplatform-resource-version = "0.23.0"
-compose-multipleplatform-version = "1.5.0"
+compose-multipleplatform-version = "1.5.10"
 compose-android-version = "1.5.4"
 compose-activity-version = "1.8.0"
+compose-compileversion = "1.5.4-dev-k1.9.20-50f08dfa4b4"
 
 [libraries]
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin-version" }
