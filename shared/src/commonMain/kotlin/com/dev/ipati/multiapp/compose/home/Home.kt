@@ -26,6 +26,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.dev.ipati.multiapp.CommonViewModel
 import com.dev.ipati.multiapp.Result
+import com.dev.ipati.multiapp.data.AlbumResponse
 import com.dev.ipati.multiapp.style.FontWeight400
 import dev.icerock.moko.mvvm.compose.getViewModel
 import dev.icerock.moko.mvvm.compose.viewModelFactory
@@ -43,7 +44,7 @@ fun BaseHome(onClickedItem: (() -> Unit)? = null) {
 
 @Composable
 fun Home(
-    albumState: Result = Result.Success,
+    albumState: AlbumResponse = AlbumResponse(),
     onClickedItem: (() -> Unit)? = null
 ) {
     Box(
@@ -67,7 +68,7 @@ fun Home(
             Text(
                 modifier = Modifier.padding(16.dp),
                 style = FontWeight400(textSize = 32),
-                text = "$albumState"
+                text = "${albumState.data?.name}"
             )
             SearchField()
             ThumbnailCollection(onClickedItem)

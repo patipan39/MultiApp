@@ -14,6 +14,7 @@ compose-activity-version = "1.8.0"
 compose-compileversion = "1.5.4-dev-k1.9.20-50f08dfa4b4"
 ktor-version = "2.3.5"
 coroutine-version = "1.7.3"
+kotlin-serialization-version = "1.9.20"
 
 [libraries]
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin-version" }
@@ -45,6 +46,10 @@ ktor-client = { module = "io.ktor:ktor-client-cio", version.ref = "ktor-client-v
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor-client-version" }
 ktor-client-okttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor-client-version" }
 ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor-client-version" }
+ktor-serialization = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor-version" }
+ktor-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor-version" }
+ktor-protobuf = { module = "io.ktor:ktor-serialization-kotlinx-protobuf", version.ref = "ktor-version" }
+ktor-cbor = { module = "io.ktor:ktor-serialization-kotlinx-cbor", version.ref = "ktor-version" }
 
 coroutine-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutine-version" }
 coroutine-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutine-version" }
@@ -56,3 +61,4 @@ android = { id = "org.jetbrains.kotlin.android", version.ref = "kotin-version" }
 multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotin-version" }
 multiplatform-resource = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "multipleplatform-resource-version" }
 composemultipleplatform = { id = "org.jetbrains.compose", version.ref = "compose-multipleplatform-version" }
+kotlinserialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin-serialization-version" }

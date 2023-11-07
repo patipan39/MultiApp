@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.library)
     alias(libs.plugins.composemultipleplatform)
     alias(libs.plugins.multiplatform.resource)
+    alias(libs.plugins.kotlinserialization)
 }
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
@@ -72,6 +73,10 @@ kotlin {
 
                 implementation(libs.ktor.client.core)
                 implementation(libs.coroutine.core)
+                implementation(libs.ktor.serialization)
+                implementation(libs.ktor.cbor)
+                implementation(libs.ktor.protobuf)
+                implementation(libs.ktor.negotiation)
             }
         }
         val iosMain by getting {
