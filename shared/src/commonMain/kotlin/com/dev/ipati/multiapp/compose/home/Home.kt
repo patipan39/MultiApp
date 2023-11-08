@@ -1,15 +1,18 @@
 package com.dev.ipati.multiapp.compose.home
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
@@ -22,9 +25,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.dev.ipati.multiapp.CommonViewModel
 import com.dev.ipati.multiapp.style.FontWeight400
+import com.seiko.imageloader.rememberImagePainter
 import dev.icerock.moko.mvvm.compose.getViewModel
 import dev.icerock.moko.mvvm.compose.viewModelFactory
 import org.koin.mp.KoinPlatform
@@ -54,6 +59,7 @@ fun BaseHome(onClickedItem: (() -> Unit)? = null) {
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         val paddingHorizontal = Modifier.padding(horizontal = 16.dp)
+        val paddingVertical = Modifier.padding(vertical = 8.dp)
         item {
             TitleHome(paddingHorizontal, "Hi Guest", 32)
         }
@@ -62,12 +68,22 @@ fun BaseHome(onClickedItem: (() -> Unit)? = null) {
         }
         //shelf section
         items(component) {
-            TitleHome(
-                paddingHorizontal
-                    .then(Modifier.padding(vertical = 8.dp)),
-                it.name.orEmpty(),
-                20
-            )
+            it.banner.takeIf { url -> !url.isNullOrEmpty() }?.let { url ->
+                TitleHome(
+                    paddingHorizontal
+                        .then(Modifier.padding(top = 8.dp)),
+                    it.name.orEmpty(),
+                    20
+                )
+                BannerHome(paddingHorizontal, url)
+            } ?: run {
+                TitleHome(
+                    paddingHorizontal
+                        .then(paddingVertical),
+                    it.name.orEmpty(),
+                    20
+                )
+            }
             ThumbnailCollection(it.songList ?: emptyList(), onClickedItem)
         }
     }
@@ -80,6 +96,24 @@ fun TitleHome(modifier: Modifier = Modifier, text: String = "", textSize: Int) {
         text = text,
         style = FontWeight400(textSize = textSize)
     )
+}
+
+@Composable
+fun BannerHome(modifier: Modifier = Modifier, url: String = "") {
+    Surface(
+        modifier = Modifier.fillMaxWidth()
+            .padding(
+                vertical = 8.dp
+            )
+            .then(modifier),
+        shape = RoundedCornerShape(22.dp)
+    ) {
+        Image(
+            painter = rememberImagePainter(url),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+        )
+    }
 }
 
 @Composable

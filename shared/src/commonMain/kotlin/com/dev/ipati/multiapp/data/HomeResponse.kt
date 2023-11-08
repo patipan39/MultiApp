@@ -13,6 +13,7 @@ data class HomeResponse(
     data class Data(
         val id: String? = null,
         val name: String? = null,
+        val banner: String? = null,
         @SerialName("songs") val songList: List<Song>? = null
     )
 
