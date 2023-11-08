@@ -9,14 +9,14 @@ class CommonViewModel(
     private val albumUseCase: GetHomeUseCase
 ) : ViewModel() {
 
-    val stateHome = mutableStateOf(listOf(HomeResponse.Song()))
+    val stateHome = mutableStateOf(listOf(HomeResponse.Data()))
     val stateError = mutableStateOf(Exception())
 
     init {
         viewModelScope.launch {
             when (val result = albumUseCase.execute()) {
                 is Result.Success -> {
-                    stateHome.value = result.data.albumsList?.songList ?: emptyList()
+                    stateHome.value = result.data.component ?: emptyList()
                 }
 
                 is Result.Error -> {

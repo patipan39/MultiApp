@@ -7,17 +7,12 @@ import kotlinx.serialization.Serializable
 data class HomeResponse(
     @SerialName("status") val name: String? = null,
     @SerialName("message") val message: String? = null,
-    @SerialName("albums") val albumsList: Data? = null
+    @SerialName("data") val component: List<Data>? = null,
 ) {
     @Serializable
     data class Data(
         val id: String? = null,
         val name: String? = null,
-        val year: String? = null,
-        val releaseDate: String? = null,
-        val uri: String? = null,
-        val primaryArtistsId: String? = null,
-        val primaryArtists: String? = null,
         @SerialName("songs") val songList: List<Song>? = null
     )
 

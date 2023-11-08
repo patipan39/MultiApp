@@ -18,37 +18,29 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import com.dev.ipati.multiapp.CommonViewModel
+import com.dev.ipati.multiapp.data.HomeResponse
 import com.dev.ipati.multiapp.style.FontWeight400
 import com.multi.resource.SharedRes
 import com.seiko.imageloader.rememberImagePainter
-import dev.icerock.moko.mvvm.compose.getViewModel
-import dev.icerock.moko.mvvm.compose.viewModelFactory
 import dev.icerock.moko.resources.compose.painterResource
-import org.koin.mp.KoinPlatform
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ThumbnailCollection(
+    albums: List<HomeResponse.Song> = emptyList(),
     onClickedItem: (() -> Unit)? = null
 ) {
-    val viewModel: CommonViewModel = getViewModel(
-        Unit, viewModelFactory {
-            CommonViewModel(KoinPlatform.getKoin().get())
-        })
-    val album by viewModel.stateHome
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         contentPadding = PaddingValues(horizontal = 16.dp)
     ) {
-        items(album) {
+        items(albums) {
             Surface(
                 modifier = Modifier.size(165.dp, 180.dp),
                 shape = RoundedCornerShape(25.dp),

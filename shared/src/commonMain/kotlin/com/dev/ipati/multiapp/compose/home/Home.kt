@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
@@ -15,16 +16,26 @@ import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.dev.ipati.multiapp.CommonViewModel
 import com.dev.ipati.multiapp.style.FontWeight400
+import dev.icerock.moko.mvvm.compose.getViewModel
+import dev.icerock.moko.mvvm.compose.viewModelFactory
+import org.koin.mp.KoinPlatform
 
 @Composable
 fun BaseHome(onClickedItem: (() -> Unit)? = null) {
+    val viewModel: CommonViewModel = getViewModel(
+        Unit, viewModelFactory {
+            CommonViewModel(KoinPlatform.getKoin().get())
+        })
+    val component by viewModel.stateHome
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
@@ -42,18 +53,22 @@ fun BaseHome(onClickedItem: (() -> Unit)? = null) {
         ),
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-        val horizontalModifier = Modifier.padding(horizontal = 16.dp)
+        val paddingHorizontal = Modifier.padding(horizontal = 16.dp)
         item {
-            TitleHome(horizontalModifier, "Hi Guest", 32)
+            TitleHome(paddingHorizontal, "Hi Guest", 32)
         }
         item {
-            SearchField(horizontalModifier)
+            SearchField(paddingHorizontal)
         }
-        item {
-            TitleHome(horizontalModifier, "Albums", 20)
-        }
-        item {
-            ThumbnailCollection(onClickedItem)
+        //shelf section
+        items(component) {
+            TitleHome(
+                paddingHorizontal
+                    .then(Modifier.padding(vertical = 8.dp)),
+                it.name.orEmpty(),
+                20
+            )
+            ThumbnailCollection(it.songList ?: emptyList(), onClickedItem)
         }
     }
 }
