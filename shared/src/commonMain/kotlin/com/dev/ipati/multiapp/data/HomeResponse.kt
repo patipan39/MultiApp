@@ -4,10 +4,10 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class AlbumResponse(
+data class HomeResponse(
     @SerialName("status") val name: String? = null,
     @SerialName("message") val message: String? = null,
-    @SerialName("data") val data: Data? = null
+    @SerialName("albums") val albumsList: Data? = null
 ) {
     @Serializable
     data class Data(

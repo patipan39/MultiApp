@@ -43,7 +43,7 @@ fun ThumbnailCollection(
         Unit, viewModelFactory {
             CommonViewModel(KoinPlatform.getKoin().get())
         })
-    val album by viewModel.stateAlbum
+    val album by viewModel.stateHome
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         contentPadding = PaddingValues(horizontal = 16.dp)

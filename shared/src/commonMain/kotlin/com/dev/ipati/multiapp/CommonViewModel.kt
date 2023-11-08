@@ -1,22 +1,22 @@
 package com.dev.ipati.multiapp
 
 import androidx.compose.runtime.mutableStateOf
-import com.dev.ipati.multiapp.data.AlbumResponse
+import com.dev.ipati.multiapp.data.HomeResponse
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import kotlinx.coroutines.launch
 
 class CommonViewModel(
-    private val albumUseCase: GetAlbumUseCase
+    private val albumUseCase: GetHomeUseCase
 ) : ViewModel() {
 
-    val stateAlbum = mutableStateOf(listOf(AlbumResponse.Song()))
+    val stateHome = mutableStateOf(listOf(HomeResponse.Song()))
     val stateError = mutableStateOf(Exception())
 
     init {
         viewModelScope.launch {
             when (val result = albumUseCase.execute()) {
                 is Result.Success -> {
-                    stateAlbum.value = result.data.data?.songList ?: emptyList()
+                    stateHome.value = result.data.albumsList?.songList ?: emptyList()
                 }
 
                 is Result.Error -> {
