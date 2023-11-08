@@ -9,6 +9,7 @@ class CommonViewModel(
     private val albumUseCase: GetHomeUseCase
 ) : ViewModel() {
 
+    val search = mutableStateOf("")
     val stateHome = mutableStateOf(listOf(HomeResponse.Data()))
     val stateError = mutableStateOf(Exception())
 
@@ -24,5 +25,9 @@ class CommonViewModel(
                 }
             }
         }
+    }
+
+    fun search(keyword: String) {
+        search.value = keyword
     }
 }

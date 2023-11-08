@@ -38,9 +38,14 @@ fun ThumbnailCollection(
 ) {
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
-        contentPadding = PaddingValues(horizontal = 16.dp)
+        contentPadding = PaddingValues(horizontal = 16.dp),
     ) {
-        items(albums) {
+        items(
+            items = albums,
+            key = {
+                it.id.orEmpty()
+            }
+        ) {
             Surface(
                 modifier = Modifier.size(165.dp, 180.dp),
                 shape = RoundedCornerShape(25.dp),
