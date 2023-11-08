@@ -3,12 +3,10 @@ package com.dev.ipati.multiapp.compose.home
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
@@ -17,40 +15,19 @@ import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.dev.ipati.multiapp.CommonViewModel
-import com.dev.ipati.multiapp.Result
-import com.dev.ipati.multiapp.data.AlbumResponse
 import com.dev.ipati.multiapp.style.FontWeight400
-import dev.icerock.moko.mvvm.compose.getViewModel
-import dev.icerock.moko.mvvm.compose.viewModelFactory
-import org.koin.mp.KoinPlatform
 
 @Composable
 fun BaseHome(onClickedItem: (() -> Unit)? = null) {
-    val viewModel: CommonViewModel = getViewModel(
-        Unit, viewModelFactory {
-            CommonViewModel(KoinPlatform.getKoin().get())
-        })
-    val state by viewModel.stateAlbum
-    Home(state, onClickedItem)
-}
-
-@Composable
-fun Home(
-    albumState: AlbumResponse = AlbumResponse(),
-    onClickedItem: (() -> Unit)? = null
-) {
-    Box(
+    LazyColumn(
         modifier = Modifier
-            .fillMaxWidth()
-            .fillMaxHeight()
+            .fillMaxSize()
             .background(
                 brush = Brush.linearGradient(
                     colors = listOf(
@@ -59,29 +36,43 @@ fun Home(
                     )
                 )
             ),
+        contentPadding = PaddingValues(
+            top = 100.dp,
+            bottom = 32.dp
+        ),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-        Column(
-            modifier = Modifier,
-            verticalArrangement = Arrangement.SpaceEvenly
-        ) {
-            Spacer(Modifier.height(100.dp))
-            Text(
-                modifier = Modifier.padding(16.dp),
-                style = FontWeight400(textSize = 32),
-                text = "${albumState.data?.name}"
-            )
-            SearchField()
+        val horizontalModifier = Modifier.padding(horizontal = 16.dp)
+        item {
+            TitleHome(horizontalModifier, "Hi Guest", 32)
+        }
+        item {
+            SearchField(horizontalModifier)
+        }
+        item {
+            TitleHome(horizontalModifier, "Albums", 20)
+        }
+        item {
             ThumbnailCollection(onClickedItem)
         }
     }
 }
 
 @Composable
-fun SearchField() {
+fun TitleHome(modifier: Modifier = Modifier, text: String = "", textSize: Int) {
+    Text(
+        modifier = Modifier.then(modifier),
+        text = text,
+        style = FontWeight400(textSize = textSize)
+    )
+}
+
+@Composable
+fun SearchField(modifier: Modifier = Modifier) {
     val searchValue = remember { mutableStateOf(SearchValue("")) }
     Box {
         TextField(
-            modifier = Modifier.padding(horizontal = 16.dp),
+            modifier = Modifier.then(modifier),
             value = searchValue.value.value,
             onValueChange = {
                 searchValue.value = SearchValue(it)

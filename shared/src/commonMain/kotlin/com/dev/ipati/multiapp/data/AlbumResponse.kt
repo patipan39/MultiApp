@@ -18,12 +18,20 @@ data class AlbumResponse(
         val uri: String? = null,
         val primaryArtistsId: String? = null,
         val primaryArtists: String? = null,
-        val image: List<Image>
+        @SerialName("songs") val songList: List<Song>? = null
     )
 
     @Serializable
-    data class Image(
-        val quality: String? = null,
-        @SerialName("link") val url: String? = null
+    data class Song(
+        val id: String? = null,
+        val name: String? = null,
+        val album: Album? = null,
+        val track: Int? = null
+    )
+
+    @Serializable
+    data class Album(
+        val url: String? = null,
+        val name: String? = null
     )
 }

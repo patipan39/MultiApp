@@ -18,30 +18,37 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import com.dev.ipati.multiapp.CommonViewModel
 import com.dev.ipati.multiapp.style.FontWeight400
 import com.multi.resource.SharedRes
 import com.seiko.imageloader.rememberImagePainter
+import dev.icerock.moko.mvvm.compose.getViewModel
+import dev.icerock.moko.mvvm.compose.viewModelFactory
 import dev.icerock.moko.resources.compose.painterResource
+import org.koin.mp.KoinPlatform
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun ThumbnailCollection(onClickedItem: (() -> Unit)? = null) {
-    val listThumbnail = mutableListOf("Item", "Item", "Item", "Item", "Item")
-    val image = rememberImagePainter(
-        "https://www.khaosod.co.th/wpapp/uploads/2023/06/ent15p1-6.jpg"
-    )
+fun ThumbnailCollection(
+    onClickedItem: (() -> Unit)? = null
+) {
+    val viewModel: CommonViewModel = getViewModel(
+        Unit, viewModelFactory {
+            CommonViewModel(KoinPlatform.getKoin().get())
+        })
+    val album by viewModel.stateAlbum
     LazyRow(
-        modifier = Modifier.padding(vertical = 16.dp),
-        contentPadding = PaddingValues(horizontal = 16.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        contentPadding = PaddingValues(horizontal = 16.dp)
     ) {
-        items(listThumbnail) {
+        items(album) {
             Surface(
                 modifier = Modifier.size(165.dp, 180.dp),
                 shape = RoundedCornerShape(25.dp),
@@ -52,7 +59,7 @@ fun ThumbnailCollection(onClickedItem: (() -> Unit)? = null) {
                 }
             ) {
                 Image(
-                    painter = image,
+                    painter = rememberImagePainter(it.album?.url.orEmpty()),
                     contentDescription = null,
                     contentScale = ContentScale.Crop
                 )
@@ -80,7 +87,7 @@ fun ThumbnailCollection(onClickedItem: (() -> Unit)? = null) {
                     ) {
                         Text(
                             modifier = Modifier.padding(horizontal = 16.dp),
-                            text = it,
+                            text = it.album?.name.orEmpty(),
                             style = FontWeight400(textSize = 12)
                         )
 
@@ -98,7 +105,7 @@ fun ThumbnailCollection(onClickedItem: (() -> Unit)? = null) {
                             )
                             Text(
                                 modifier = Modifier,
-                                text = "22 tracks",
+                                text = "${it.track} track",
                                 style = FontWeight400(textSize = 12),
                             )
                         }
