@@ -27,7 +27,7 @@ struct HomeComposeView: UIViewControllerRepresentable {
     let onClickedItem : () -> Void
     
     func makeUIViewController(context: Context) -> UIViewController {
-        return Home_iosKt.HomeViewController {
+        Home_iosKt.HomeViewController {
             onClickedItem()
         }
     }
