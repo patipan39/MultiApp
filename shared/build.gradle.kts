@@ -113,4 +113,5 @@ android {
 multiplatformResources {
     multiplatformResourcesPackage = "com.multi.resource"
     multiplatformResourcesClassName = "SharedRes"
+    disableStaticFrameworkWarning = true
 }

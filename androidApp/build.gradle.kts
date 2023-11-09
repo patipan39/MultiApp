@@ -1,8 +1,6 @@
-import org.jetbrains.compose.compose
-
 plugins {
-    id("com.android.application")
-    kotlin("android")
+    alias(libs.plugins.application)
+    alias(libs.plugins.android)
 }
 
 android {

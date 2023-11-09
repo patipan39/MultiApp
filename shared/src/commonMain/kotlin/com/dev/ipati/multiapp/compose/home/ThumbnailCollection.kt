@@ -54,7 +54,7 @@ fun ThumbnailCollection(
                     onClickedItem?.invoke()
                 }
             ) {
-                ThumbnailImage(it.album?.url.orEmpty())
+                LibsImage.KamelImage(url = it.album?.url.orEmpty())
                 Column(
                     modifier = Modifier.padding(16.dp),
                     verticalArrangement = Arrangement.Bottom
@@ -106,9 +106,4 @@ fun ThumbnailCollection(
             }
         }
     }
-}
-
-@Composable
-private fun ThumbnailImage(url: String) {
-    LibsImage.KamelImage(url = url)
 }
