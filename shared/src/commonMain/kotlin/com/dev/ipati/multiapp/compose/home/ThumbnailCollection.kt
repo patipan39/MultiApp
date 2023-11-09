@@ -22,12 +22,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import com.dev.ipati.multiapp.LibsImage
 import com.dev.ipati.multiapp.data.HomeResponse
 import com.dev.ipati.multiapp.style.FontWeight400
 import com.multi.resource.SharedRes
-import com.seiko.imageloader.rememberImagePainter
 import dev.icerock.moko.resources.compose.painterResource
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -55,11 +54,7 @@ fun ThumbnailCollection(
                     onClickedItem?.invoke()
                 }
             ) {
-                Image(
-                    painter = rememberImagePainter(it.album?.url.orEmpty()),
-                    contentDescription = null,
-                    contentScale = ContentScale.Crop
-                )
+                ThumbnailImage(it.album?.url.orEmpty())
                 Column(
                     modifier = Modifier.padding(16.dp),
                     verticalArrangement = Arrangement.Bottom
@@ -111,4 +106,9 @@ fun ThumbnailCollection(
             }
         }
     }
+}
+
+@Composable
+private fun ThumbnailImage(url: String) {
+    LibsImage.KamelImage(url = url)
 }

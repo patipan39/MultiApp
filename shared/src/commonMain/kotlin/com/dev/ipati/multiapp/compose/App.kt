@@ -23,11 +23,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import com.dev.ipati.multiapp.LibsImage
 import com.dev.ipati.multiapp.style.FontWeight400
 import com.multi.resource.SharedRes
-import com.seiko.imageloader.rememberImagePainter
 import dev.icerock.moko.resources.compose.painterResource
 
 @Composable
@@ -109,9 +108,6 @@ fun AppToolbar(onBack: (() -> Unit)? = null) {
 
 @Composable
 fun Thumbnail() {
-    val image = rememberImagePainter(
-        "https://www.khaosod.co.th/wpapp/uploads/2023/06/ent15p1-6.jpg"
-    )
     Column {
         Box(modifier = Modifier.fillMaxWidth()) {
             Card(
@@ -121,13 +117,12 @@ fun Thumbnail() {
                     .clip(RoundedCornerShape(14.dp)),
                 backgroundColor = Color(0x66F2F2F2)
             ) {
-                Image(
-                    modifier = Modifier
-                        .width(266.dp)
-                        .height(268.dp),
-                    painter = image,
-                    contentDescription = null,
-                    contentScale = ContentScale.Crop
+                val modifier = Modifier
+                    .width(266.dp)
+                    .height(268.dp)
+                LibsImage.KamelImage(
+                    modifier,
+                    "https://www.khaosod.co.th/wpapp/uploads/2023/06/ent15p1-6.jpg"
                 )
             }
         }

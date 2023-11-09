@@ -1,6 +1,5 @@
 package com.dev.ipati.multiapp.compose.home
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -27,14 +26,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.dev.ipati.multiapp.CommonViewModel
+import com.dev.ipati.multiapp.LibsImage
 import com.dev.ipati.multiapp.style.FontWeight400
-import com.seiko.imageloader.rememberImagePainter
 import dev.icerock.moko.mvvm.compose.getViewModel
 import dev.icerock.moko.mvvm.compose.viewModelFactory
 import org.koin.mp.KoinPlatform
@@ -123,11 +121,7 @@ fun BannerHome(modifier: Modifier = Modifier, url: String = "") {
             .then(modifier),
         shape = RoundedCornerShape(22.dp)
     ) {
-        Image(
-            painter = rememberImagePainter(url),
-            contentDescription = null,
-            contentScale = ContentScale.Crop,
-        )
+        LibsImage.KamelImage(url = url)
     }
 }
 

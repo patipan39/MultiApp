@@ -4,8 +4,7 @@ koin-version = "3.5.0"
 compose-mvvm-version = "0.16.1"
 media3-exoplayer = "1.1.1"
 moko-resource-version = "0.23.0"
-image-loader-version = "1.6.5"
-ktor-client-version = "2.3.4"
+ktor-client-version = "2.3.5"
 kotin-version = "1.9.20"
 multipleplatform-resource-version = "0.23.0"
 compose-multipleplatform-version = "1.5.10"
@@ -15,6 +14,7 @@ compose-compileversion = "1.5.4-dev-k1.9.20-50f08dfa4b4"
 ktor-version = "2.3.5"
 coroutine-version = "1.7.3"
 kotlin-serialization-version = "1.9.20"
+kamel-image-version = "0.8.3"
 
 [libraries]
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin-version" }
@@ -40,7 +40,6 @@ media3-ui = { module = "androidx.media3:media3-ui", version.ref = "media3-exopla
 moko-resource = { module = "dev.icerock.moko:resources", version.ref = "moko-resource-version" }
 moko-compose = { module = "dev.icerock.moko:resources-compose", version.ref = "moko-resource-version" }
 
-image-loader = { module = "io.github.qdsfdhvh:image-loader", version.ref = "image-loader-version" }
 ktor-client = { module = "io.ktor:ktor-client-cio", version.ref = "ktor-client-version" }
 
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor-client-version" }
@@ -53,6 +52,8 @@ ktor-cbor = { module = "io.ktor:ktor-serialization-kotlinx-cbor", version.ref = 
 
 coroutine-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutine-version" }
 coroutine-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutine-version" }
+
+kamel-image = { module = "media.kamel:kamel-image", version.ref = "kamel-image-version" }
 
 [plugins]
 application = { id = "com.android.application", version.ref = "android-application-version" }

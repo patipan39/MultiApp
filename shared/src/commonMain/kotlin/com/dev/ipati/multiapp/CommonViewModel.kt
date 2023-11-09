@@ -1,5 +1,6 @@
 package com.dev.ipati.multiapp
 
+import androidx.compose.runtime.Stable
 import androidx.compose.runtime.mutableStateOf
 import com.dev.ipati.multiapp.data.HomeResponse
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
@@ -10,7 +11,10 @@ class CommonViewModel(
 ) : ViewModel() {
 
     val search = mutableStateOf("")
+
+    @Stable
     val stateHome = mutableStateOf(listOf(HomeResponse.Data()))
+
     val stateError = mutableStateOf(Exception())
 
     init {

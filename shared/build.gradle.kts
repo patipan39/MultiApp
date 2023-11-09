@@ -53,9 +53,6 @@ kotlin {
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
 
-                implementation(libs.image.loader)
-                implementation(libs.ktor.client)
-
                 //koin
                 implementation(libs.koin.core)
                 implementation(libs.koin.test)
@@ -71,12 +68,15 @@ kotlin {
                 implementation(libs.moko.resource)
                 implementation(libs.moko.compose)
 
+                implementation(libs.ktor.client)
                 implementation(libs.ktor.client.core)
                 implementation(libs.coroutine.core)
                 implementation(libs.ktor.serialization)
                 implementation(libs.ktor.cbor)
                 implementation(libs.ktor.protobuf)
                 implementation(libs.ktor.negotiation)
+
+                implementation(libs.kamel.image)
             }
         }
         val iosMain by getting {
