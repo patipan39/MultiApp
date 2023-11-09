@@ -2,36 +2,36 @@ import SwiftUI
 import shared
 
 struct MainView: View {
-    @State var goToHomePage : Bool = false
+    @Environment(\.presentationMode) var presentationMode : Binding<PresentationMode>
     var body: some View {
-        if(goToHomePage){
-            HomeContentView()
-        }else{
-            MainComposeView {
-                goToHomePage = true
+        NavigationView {
+            VStack {
+                MainComposeView {
+                    presentationMode.wrappedValue.dismiss()
+                }
             }
-        }
+        }.navigationBarHidden(true)
     }
 }
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainComposeView{
-            
+        MainComposeView {
+
         }
     }
 }
 
 struct MainComposeView: UIViewControllerRepresentable {
-    let onBack : () -> Void
-    
+    let onBack: () -> Void
+
     func makeUIViewController(context: Context) -> UIViewController {
-        return Main_iosKt.MainViewController {
+        Main_iosKt.MainViewController {
             onBack()
         }
     }
-    
+
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-        
+
     }
 }
