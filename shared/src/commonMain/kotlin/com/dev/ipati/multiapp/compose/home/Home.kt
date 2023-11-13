@@ -1,31 +1,26 @@
 package com.dev.ipati.multiapp.compose.home
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Icon
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
-import androidx.compose.material.TextFieldDefaults
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -33,12 +28,17 @@ import androidx.compose.ui.unit.dp
 import com.dev.ipati.multiapp.CommonViewModel
 import com.dev.ipati.multiapp.LibsImage
 import com.dev.ipati.multiapp.style.FontWeight400
+import com.multi.resource.SharedRes
 import dev.icerock.moko.mvvm.compose.getViewModel
 import dev.icerock.moko.mvvm.compose.viewModelFactory
+import dev.icerock.moko.resources.compose.stringResource
 import org.koin.mp.KoinPlatform
 
 @Composable
-fun BaseHome(onClickedItem: (() -> Unit)? = null) {
+fun Home(
+    onClickAlbum: (() -> Unit)? = null,
+    onClickProfile: (() -> Unit)? = null
+) {
     val viewModel: CommonViewModel = getViewModel(
         Unit, viewModelFactory {
             CommonViewModel(KoinPlatform.getKoin().get())
@@ -48,17 +48,9 @@ fun BaseHome(onClickedItem: (() -> Unit)? = null) {
     val homeState = rememberLazyListState()
     LazyColumn(
         modifier = Modifier
-            .fillMaxSize()
-            .background(
-                brush = Brush.linearGradient(
-                    colors = listOf(
-                        Color.Black,
-                        Color(0x877A51E2)
-                    )
-                )
-            ),
+            .fillMaxSize(),
         contentPadding = PaddingValues(
-            top = 100.dp,
+            top = 90.dp,
             bottom = 32.dp
         ),
         verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -67,7 +59,10 @@ fun BaseHome(onClickedItem: (() -> Unit)? = null) {
         val paddingHorizontal = Modifier.padding(horizontal = 16.dp)
         val paddingVertical = Modifier.padding(vertical = 8.dp)
         item {
-            TitleHome(paddingHorizontal, "Hi Guest", 32)
+            MenuHome(paddingHorizontal, onClickProfile)
+        }
+        item {
+            TitleHome(paddingHorizontal, stringResource(SharedRes.strings.multi_app_welcome), 32)
         }
         item {
             SearchField(paddingHorizontal, search, onChange = {
@@ -96,7 +91,7 @@ fun BaseHome(onClickedItem: (() -> Unit)? = null) {
             }
             ThumbnailCollection(
                 albums = it.songList ?: emptyList(),
-                onClickedItem = onClickedItem
+                onClickedItem = onClickAlbum
             )
         }
     }
@@ -122,6 +117,26 @@ fun BannerHome(modifier: Modifier = Modifier, url: String = "") {
         shape = RoundedCornerShape(22.dp)
     ) {
         LibsImage.KamelImage(url = url)
+    }
+}
+
+@Composable
+fun MenuHome(modifier: Modifier, onClicked: (() -> Unit)? = null) {
+    Row(
+        modifier = Modifier
+            .then(modifier)
+            .fillMaxWidth()
+            .wrapContentHeight(),
+        horizontalArrangement = Arrangement.End,
+    ) {
+        Image(
+            modifier = Modifier.clickable(onClick = {
+                onClicked?.invoke()
+            }),
+            imageVector = Icons.Default.AccountCircle,
+            contentDescription = null,
+            colorFilter = ColorFilter.tint(Color.White)
+        )
     }
 }
 

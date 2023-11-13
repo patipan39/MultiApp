@@ -8,9 +8,12 @@ struct HomeContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                HomeComposeView {
-                    goToMainPage = true
-                }
+                HomeComposeView(
+                    onClickedAlbum: {
+                        goToMainPage = true
+                    }, onClickedProfile: {
+
+                })
                 NavigationLink("", destination: MainView(), isActive: $goToMainPage)
             }
         }
@@ -19,19 +22,20 @@ struct HomeContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeComposeView {
-            //nothing
-        }
+        HomeComposeView(onClickedAlbum: {
+
+        }, onClickedProfile: {
+
+        })
     }
 }
 
 struct HomeComposeView: UIViewControllerRepresentable {
-    let onClickedItem: () -> Void
+    let onClickedAlbum: () -> Void;
+    let onClickedProfile: () -> Void
 
     func makeUIViewController(context: Context) -> UIViewController {
-        Home_iosKt.HomeViewController {
-            onClickedItem()
-        }
+        Home_iosKt.HomeViewController(onClickAlbum: onClickedAlbum, onClickProfile: onClickedProfile)
     }
 
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
