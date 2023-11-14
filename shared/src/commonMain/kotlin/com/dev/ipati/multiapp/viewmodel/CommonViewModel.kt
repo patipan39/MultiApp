@@ -1,8 +1,10 @@
-package com.dev.ipati.multiapp
+package com.dev.ipati.multiapp.viewmodel
 
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.mutableStateOf
+import com.dev.ipati.multiapp.Result
 import com.dev.ipati.multiapp.data.HomeResponse
+import com.dev.ipati.multiapp.usecase.GetHomeUseCase
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import kotlinx.coroutines.launch
 

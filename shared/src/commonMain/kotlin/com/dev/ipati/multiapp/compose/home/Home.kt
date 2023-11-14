@@ -1,8 +1,8 @@
 package com.dev.ipati.multiapp.compose.home
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -16,8 +16,6 @@ import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
@@ -25,7 +23,7 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import com.dev.ipati.multiapp.CommonViewModel
+import com.dev.ipati.multiapp.viewmodel.CommonViewModel
 import com.dev.ipati.multiapp.LibsImage
 import com.dev.ipati.multiapp.style.FontWeight400
 import com.multi.resource.SharedRes
@@ -34,6 +32,7 @@ import dev.icerock.moko.mvvm.compose.viewModelFactory
 import dev.icerock.moko.resources.compose.stringResource
 import org.koin.mp.KoinPlatform
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun Home(
     onClickAlbum: (() -> Unit)? = null,
@@ -58,7 +57,7 @@ fun Home(
     ) {
         val paddingHorizontal = Modifier.padding(horizontal = 16.dp)
         val paddingVertical = Modifier.padding(vertical = 8.dp)
-        item {
+        stickyHeader {
             MenuHome(paddingHorizontal, onClickProfile)
         }
         item {

@@ -2,13 +2,15 @@ package com.dev.ipati.multiapp.di
 
 import androidx.media3.common.AudioAttributes
 import androidx.media3.exoplayer.ExoPlayer
-import com.dev.ipati.multiapp.CommonViewModel
+import com.dev.ipati.multiapp.viewmodel.CommonViewModel
+import com.dev.ipati.multiapp.viewmodel.ProfileViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.dsl.module
 
 val module = module {
     viewModelOf(::CommonViewModel)
+    viewModelOf(::ProfileViewModel)
 
     single {
         val builder = ExoPlayer.Builder(androidContext()).apply {

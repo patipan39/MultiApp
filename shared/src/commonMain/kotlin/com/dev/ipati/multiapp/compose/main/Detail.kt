@@ -1,4 +1,4 @@
-package com.dev.ipati.multiapp.compose
+package com.dev.ipati.multiapp.compose.main
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement

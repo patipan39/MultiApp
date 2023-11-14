@@ -42,6 +42,7 @@ kotlin {
                 implementation(libs.ktor.client.okttp)
                 implementation(libs.coroutine.android)
                 implementation(libs.koin.android)
+                implementation(libs.compose.android.material3)
             }
         }
         val commonMain by getting {

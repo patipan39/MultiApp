@@ -1,11 +1,8 @@
-package com.dev.ipati.multiapp
+package com.dev.ipati.multiapp.usecase
 
+import com.dev.ipati.multiapp.GetHomeRepository
 import com.dev.ipati.multiapp.data.HomeResponse
-
-sealed class Result<T> {
-    data class Success<T>(val data: T) : Result<T>()
-    data class Error<T>(val e: Exception) : Result<T>()
-}
+import com.dev.ipati.multiapp.Result
 
 interface GetHomeUseCase {
     suspend fun execute(): Result<HomeResponse>
