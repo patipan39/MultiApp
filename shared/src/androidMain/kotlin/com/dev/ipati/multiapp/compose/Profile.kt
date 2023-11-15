@@ -12,17 +12,16 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import dev.icerock.moko.mvvm.compose.viewModelFactory
 import com.dev.ipati.multiapp.LibsImage
 import com.dev.ipati.multiapp.data.ProfileData
 import com.dev.ipati.multiapp.style.FontWeight400
 import com.dev.ipati.multiapp.viewmodel.ProfileViewModel
 import com.multi.resource.SharedRes
 import dev.icerock.moko.mvvm.compose.getViewModel
+import dev.icerock.moko.mvvm.compose.viewModelFactory
 import dev.icerock.moko.resources.compose.colorResource
 import org.koin.mp.KoinPlatform
 
@@ -52,7 +51,6 @@ fun BaseProfile(profile: ProfileData) {
                 }, navigationIcon = {
                     IconButton(
                         onClick = {
-            
                         }, content = {
                             Icon(
                                 imageVector = Icons.Filled.ArrowBack,
