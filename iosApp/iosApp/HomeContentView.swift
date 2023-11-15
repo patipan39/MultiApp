@@ -4,6 +4,7 @@ import shared
 struct HomeContentView: View {
 
     @State var goToMainPage: Bool = false
+    @State var goToProfilePage: Bool = false
 
     var body: some View {
         NavigationView {
@@ -12,9 +13,10 @@ struct HomeContentView: View {
                     onClickedAlbum: {
                         goToMainPage = true
                     }, onClickedProfile: {
-
+                    goToProfilePage = true
                 })
                 NavigationLink("", destination: MainView(), isActive: $goToMainPage)
+                NavigationLink("", destination: ProfileView(), isActive: $goToProfilePage)
             }
         }
     }
