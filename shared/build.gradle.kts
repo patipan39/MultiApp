@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.composemultipleplatform)
     alias(libs.plugins.multiplatform.resource)
     alias(libs.plugins.kotlinserialization)
+    alias(libs.plugins.kswift)
 }
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
@@ -29,6 +30,11 @@ kotlin {
             binaryOption("bundleId", "com.dev.ipati.multiapp.shared")
             baseName = "shared"
             isStatic = true
+
+            export(libs.compose.core)
+            export(libs.moko.livedata)
+            export(libs.compose.livedata.resource)
+            export(libs.compose.mvvm.state)
         }
     }
 
@@ -59,12 +65,17 @@ kotlin {
                 implementation(libs.koin.test)
 
                 // compose multiplatform
-                implementation(libs.compose.mvvm) // api mvvm-core, getViewModel for Compose Multiplatfrom
-                implementation(libs.compose.flow) // api mvvm-flow, binding extensions for Compose Multiplatfrom
-                implementation(libs.compose.livedata)
+                api(libs.compose.mvvm) // api mvvm-core, getViewModel for Compose Multiplatfrom
+                api(libs.compose.flow) // api mvvm-flow, binding extensions for Compose Multiplatfrom
+                api(libs.compose.livedata)
+                api("dev.icerock.moko:kswift-runtime:0.6.1")
 
-                //viewModel
-                implementation(libs.compose.core)
+                api(libs.compose.core) // only ViewModel, EventsDispatcher, Dispatchers.UI
+                api(libs.moko.flow) // api mvvm-core, CFlow for native and binding extensions
+                api(libs.compose.livedata.resource) // api mvvm-core, LiveData and extensions
+                api(libs.compose.mvvm.state)// api mvvm-livedata, ResourceState class and extensions
+                api(libs.moko.livedata) // api mvvm-core, moko-resources, extensions for LiveData with moko-resources
+                api(libs.moko.flowresource) // api mvvm-core, moko-resources, extensions for Flow with moko-resources
 
                 implementation(libs.moko.resource)
                 implementation(libs.moko.compose)
@@ -115,4 +126,14 @@ multiplatformResources {
     multiplatformResourcesPackage = "com.multi.resource"
     multiplatformResourcesClassName = "SharedRes"
     disableStaticFrameworkWarning = true
+}
+
+kswift {
+    install(dev.icerock.moko.kswift.plugin.feature.SealedToSwiftEnumFeature)
+}
+
+configurations.all {
+    resolutionStrategy {
+        force("org.jetbrains.skiko:skiko:0.7.85.4")
+    }
 }

@@ -22,6 +22,7 @@ import com.dev.ipati.multiapp.viewmodel.ProfileViewModel
 import com.multi.resource.SharedRes
 import dev.icerock.moko.mvvm.compose.getViewModel
 import dev.icerock.moko.mvvm.compose.viewModelFactory
+import dev.icerock.moko.mvvm.livedata.compose.observeAsState
 import dev.icerock.moko.resources.compose.colorResource
 import org.koin.mp.KoinPlatform
 
@@ -32,7 +33,7 @@ fun ProfilePage() {
             KoinPlatform.getKoin().get()
         )
     })
-    val profile by viewModel.currentLoginSocial
+    val profile by viewModel.currentLoginSocial.observeAsState()
     BaseProfile(profile)
 }
 

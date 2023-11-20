@@ -14,6 +14,9 @@ dependencyResolutionManagement {
         maven {
             url = uri("https://androidx.dev/storage/compose-compiler/repository/")
         }
+        maven {
+            url = uri("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+        }
     }
 }
 
