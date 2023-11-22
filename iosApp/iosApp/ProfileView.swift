@@ -103,14 +103,27 @@ class ObjectProfileViewModel: ObservableObject {
             (mutableLiveData, changeValue) in
             self.currentProfile = changeValue.newValue?.unsafelyUnwrapped.currentProfile ?? []
             self.otherProfile = changeValue.newValue?.unsafelyUnwrapped.otherProfile ?? []
-        })
+        });
 
-        let result = GetProfileViewModel().getProfileUseCase().execute()
-        if let success = result as? ResultSuccess {
-            viewModel.currentLoginSocial.value = success.data
-        } else {
+        Task { @MainActor in
+            await getProfileData()
+        }
+    }
+
+    func getProfileData() async {
+        do {
+            let result = try await GetProfileViewModel().getProfileUseCase().execute()
+            DispatchQueue.main.async {
+                if let success = result as? ResultSuccess {
+                    self.viewModel.currentLoginSocial.value = success.data
+                } else {
+
+                }
+            }
+        } catch {
 
         }
+
     }
 
     deinit {

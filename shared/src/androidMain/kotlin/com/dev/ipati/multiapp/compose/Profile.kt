@@ -84,7 +84,7 @@ fun BaseProfile(profile: ProfileData) {
                             Title(text = "บัญชีที่ใช้เข้าสู่ระบบ")
                         }
 
-                        items(profile.currentProfile ?: emptyList()) {
+                        items(profile.currentProfile) {
                             CardChannelLogin(socialUrl = it.imageUrl, it.channelName, it.description.orEmpty())
                         }
 
@@ -92,7 +92,7 @@ fun BaseProfile(profile: ProfileData) {
                             Title(text = "เชื่อมต่อด้วยบัญชีอื่น")
                         }
 
-                        items(profile.otherProfile ?: emptyList()) {
+                        items(profile.otherProfile) {
                             CardChannelLogin(socialUrl = it.imageUrl, it.channelName, it.description.orEmpty())
                         }
                     })

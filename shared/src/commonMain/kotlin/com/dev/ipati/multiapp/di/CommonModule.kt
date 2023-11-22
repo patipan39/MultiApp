@@ -1,7 +1,7 @@
 package com.dev.ipati.multiapp.di
 
-import com.dev.ipati.multiapp.GetHomeRepository
-import com.dev.ipati.multiapp.GetHomeRepositoryImpl
+import com.dev.ipati.multiapp.data.repository.GetHomeRepository
+import com.dev.ipati.multiapp.data.repository.GetHomeRepositoryImpl
 import com.dev.ipati.multiapp.usecase.GetHomeUseCase
 import com.dev.ipati.multiapp.usecase.GetHomeUseCaseImpl
 import com.dev.ipati.multiapp.service.KtorService

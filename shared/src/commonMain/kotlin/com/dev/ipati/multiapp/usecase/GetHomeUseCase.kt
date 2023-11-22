@@ -1,6 +1,6 @@
 package com.dev.ipati.multiapp.usecase
 
-import com.dev.ipati.multiapp.GetHomeRepository
+import com.dev.ipati.multiapp.data.repository.GetHomeRepository
 import com.dev.ipati.multiapp.data.HomeResponse
 import com.dev.ipati.multiapp.Result
 
