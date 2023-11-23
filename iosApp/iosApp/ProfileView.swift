@@ -32,11 +32,11 @@ struct ProfilePage: View {
                     Text("รอ Api นะ").foregroundColor(.white).frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                     Text("บัญชีที่ใช้เข้าสู่ระบบ").foregroundColor(.white).frame(maxWidth: .infinity, alignment: .leading)
                     ForEach(profile.currentProfile ?? [], id: \.self) { data in
-                        CardChannelItem(imageUrl: data.imageUrl, channelName: data.channelName, description: data.description_)
+                        CardChannelItem(imageUrl: data.imageUrl, channelName: data.channelName, name: data.name)
                     }
                     Text("เชื่อมต่อด้วยบัญชีอื่น").foregroundColor(.white).frame(maxWidth: .infinity, alignment: .leading)
                     ForEach(profile.otherProfile ?? [], id: \.self) { data in
-                        CardChannelItem(imageUrl: data.imageUrl, channelName: data.channelName, description: data.description_)
+                        CardChannelItem(imageUrl: data.imageUrl, channelName: data.channelName, name: data.name)
                     }
                 }
                         .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
@@ -44,24 +44,27 @@ struct ProfilePage: View {
         }
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading) //fill width , height
                 .background(LinearGradient(gradient: Gradient(colors: [.black, .purple]), startPoint: .topLeading, endPoint: .bottomTrailing))
+                .clipped()
     }
 }
 
 struct CardChannelItem: View {
     @State var imageUrl: String
     @State var channelName: String
-    @State var description: String?
+    @State var name: String
 
     var body: some View {
         HStack(spacing: 8) {
-            KarmelImage(imageUrl: imageUrl).frame(width: 48, height: 48).clipShape(RoundedRectangle(cornerRadius: 100, style: .circular))
+            KarmelImage(imageUrl: imageUrl).frame(width: 48, height: 48)
+                    .clipShape(RoundedRectangle(cornerRadius: 100, style: .circular))
+                    .padding(EdgeInsets.init(top: 0, leading: 8, bottom: 0, trailing: 0))
             VStack {
-                Text(channelName).foregroundColor(.white)
-                Text(description ?? "").foregroundColor(.white)
+                Text(channelName).foregroundColor(.white).frame(maxWidth: .infinity, alignment: .leading)
+                Text(name).foregroundColor(.white).frame(maxWidth: .infinity, alignment: .leading)
             }
                     .padding(EdgeInsets.init(top: 8, leading: 8, bottom: 8, trailing: 8))
         }
-                .frame(minWidth: 0, maxWidth: .infinity, alignment: Alignment.leading)
+                .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                 .background(Color.gray.opacity(0.5))
                 .clipShape(RoundedRectangle(cornerRadius: 16, style: .circular))
     }
@@ -105,7 +108,7 @@ class ObjectProfileViewModel: ObservableObject {
             self.otherProfile = changeValue.newValue?.unsafelyUnwrapped.otherProfile ?? []
         });
 
-        Task { @MainActor in
+        Task {
             await getProfileData()
         }
     }
@@ -113,17 +116,14 @@ class ObjectProfileViewModel: ObservableObject {
     func getProfileData() async {
         do {
             let result = try await GetProfileViewModel().getProfileUseCase().execute()
-            DispatchQueue.main.async {
-                if let success = result as? ResultSuccess {
-                    self.viewModel.currentLoginSocial.value = success.data
-                } else {
+            if let success = result as? ResultSuccess {
+                self.viewModel.currentLoginSocial.value = success.data
+            } else {
 
-                }
             }
         } catch {
 
         }
-
     }
 
     deinit {

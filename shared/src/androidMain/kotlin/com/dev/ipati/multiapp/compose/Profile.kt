@@ -85,7 +85,7 @@ fun BaseProfile(profile: ProfileData) {
                         }
 
                         items(profile.currentProfile) {
-                            CardChannelLogin(socialUrl = it.imageUrl, it.channelName, it.description.orEmpty())
+                            CardChannelLogin(socialUrl = it.imageUrl, it.channelName, it.name)
                         }
 
                         item {
@@ -93,7 +93,7 @@ fun BaseProfile(profile: ProfileData) {
                         }
 
                         items(profile.otherProfile) {
-                            CardChannelLogin(socialUrl = it.imageUrl, it.channelName, it.description.orEmpty())
+                            CardChannelLogin(socialUrl = it.imageUrl, it.channelName, it.name)
                         }
                     })
             }
@@ -137,7 +137,7 @@ private fun Title(
 }
 
 @Composable
-private fun CardChannelLogin(socialUrl: String, channelName: String, description: String) {
+private fun CardChannelLogin(socialUrl: String, channelName: String, name: String) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
@@ -158,9 +158,7 @@ private fun CardChannelLogin(socialUrl: String, channelName: String, description
                 verticalArrangement = Arrangement.Center
             ) {
                 Title(text = channelName)
-                if (description.isNotBlank()) {
-                    Title(text = description, size = 12)
-                }
+                Title(text = name, size = 12)
             }
         }
     }

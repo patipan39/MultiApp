@@ -12,7 +12,6 @@ data class ProfileData(
     data class Info(
         @SerialName("avatar") val imageUrl: String,
         @SerialName("name") val name: String,
-        @SerialName("channelName") val channelName: String,
-        val description: String? = null
+        @SerialName("channelName") val channelName: String
     )
 }
