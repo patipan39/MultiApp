@@ -6,7 +6,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.window.ComposeUIViewController
 
 fun karmelImage(url: String) = ComposeUIViewController {
-    LibsImage.KamelImage(
+    libsImage().KamelImage(
         modifier = Modifier
             .background(Color.Transparent), url = url
     )

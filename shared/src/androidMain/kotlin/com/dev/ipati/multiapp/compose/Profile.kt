@@ -15,8 +15,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.dev.ipati.multiapp.LibsImage
 import com.dev.ipati.multiapp.data.ProfileData
+import com.dev.ipati.multiapp.libsImage
 import com.dev.ipati.multiapp.style.FontWeight400
 import com.dev.ipati.multiapp.viewmodel.ProfileViewModel
 import com.multi.resource.SharedRes
@@ -24,7 +24,7 @@ import dev.icerock.moko.mvvm.livedata.compose.observeAsState
 import dev.icerock.moko.resources.compose.colorResource
 
 @Composable
-fun ProfilePage(viewModel : ProfileViewModel) {
+fun ProfilePage(viewModel: ProfileViewModel) {
     val profile by viewModel.currentLoginSocial.observeAsState()
     BaseProfile(profile)
 }
@@ -106,7 +106,7 @@ private fun ImageProfile(url: String) {
                 .size(120.dp, 120.dp),
             shape = RoundedCornerShape(50),
             content = {
-                LibsImage.KamelImage(modifier = Modifier, url = url)
+                libsImage().KamelImage(modifier = Modifier, url = url)
             })
     }
 }
@@ -144,7 +144,7 @@ private fun CardChannelLogin(socialUrl: String, channelName: String, name: Strin
                 .wrapContentHeight(),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            LibsImage.KamelImage(modifier = Modifier.size(48.dp, 48.dp), url = socialUrl)
+            libsImage().KamelImage(modifier = Modifier.size(48.dp, 48.dp), url = socialUrl)
             Column(
                 modifier = Modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.Center

@@ -9,9 +9,9 @@ import io.ktor.http.URLProtocol
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
-actual object KtorService {
-    actual fun client(): HttpClient {
-        return HttpClient(Darwin) {
+class KtorServiceImpl : IKtorService {
+    override val client: HttpClient
+        get() = HttpClient(Darwin) {
             install(ContentNegotiation) {
                 json(Json {
                     ignoreUnknownKeys = true
@@ -24,5 +24,6 @@ actual object KtorService {
                 }
             }
         }
-    }
 }
+
+actual fun ktorService(): IKtorService = KtorServiceImpl()

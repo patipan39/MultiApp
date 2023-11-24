@@ -2,15 +2,21 @@ package com.dev.ipati.multiapp.di
 
 import androidx.media3.common.AudioAttributes
 import androidx.media3.exoplayer.ExoPlayer
+import com.dev.ipati.multiapp.service.IKtorService
+import com.dev.ipati.multiapp.service.KtorServiceImpl
 import com.dev.ipati.multiapp.viewmodel.CommonViewModel
 import com.dev.ipati.multiapp.viewmodel.ProfileViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModelOf
+import org.koin.core.module.dsl.factoryOf
+import org.koin.dsl.bind
 import org.koin.dsl.module
 
 val module = module {
     viewModelOf(::CommonViewModel)
     viewModelOf(::ProfileViewModel)
+
+    factoryOf(::KtorServiceImpl) bind IKtorService::class
 
     single {
         val builder = ExoPlayer.Builder(androidContext()).apply {

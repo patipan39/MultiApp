@@ -7,9 +7,9 @@ import io.kamel.image.KamelImage
 import io.kamel.image.asyncPainterResource
 import io.ktor.http.Url
 
-actual object LibsImage {
+class LibsImageImpl : ILibsImage {
     @Composable
-    actual fun KamelImage(modifier: Modifier, url: String) {
+    override fun KamelImage(modifier: Modifier, url: String) {
         KamelImage(
             modifier = Modifier.then(modifier),
             resource = asyncPainterResource(Url(url)),
@@ -18,3 +18,5 @@ actual object LibsImage {
         )
     }
 }
+
+actual fun libsImage(): ILibsImage = LibsImageImpl()

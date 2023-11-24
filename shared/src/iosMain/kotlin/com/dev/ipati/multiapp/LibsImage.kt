@@ -1,12 +1,10 @@
 package com.dev.ipati.multiapp
 
-import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import com.dev.ipati.multiapp.service.KtorService
+import com.dev.ipati.multiapp.service.ktorService
 import io.kamel.core.config.DefaultHttpCacheSize
 import io.kamel.core.config.KamelConfig
 import io.kamel.core.config.httpFetcher
@@ -17,12 +15,12 @@ import io.kamel.image.config.Default
 import io.kamel.image.config.LocalKamelConfig
 import io.ktor.http.Url
 
-actual object LibsImage {
+class LibsImageImpl : ILibsImage {
     @Composable
-    actual fun KamelImage(modifier: Modifier, url: String) {
+    override fun KamelImage(modifier: Modifier, url: String) {
         val config = KamelConfig {
             takeFrom(KamelConfig.Default)
-            httpFetcher(KtorService.client().engine) {
+            httpFetcher(ktorService().client.engine) {
                 httpCache(DefaultHttpCacheSize)
             }
         }
@@ -36,3 +34,5 @@ actual object LibsImage {
         }
     }
 }
+
+actual fun libsImage(): ILibsImage = LibsImageImpl()

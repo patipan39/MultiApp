@@ -24,7 +24,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.dev.ipati.multiapp.viewmodel.CommonViewModel
-import com.dev.ipati.multiapp.LibsImage
+import com.dev.ipati.multiapp.libsImage
 import com.dev.ipati.multiapp.style.FontWeight400
 import com.multi.resource.SharedRes
 import dev.icerock.moko.mvvm.compose.getViewModel
@@ -115,7 +115,7 @@ fun BannerHome(modifier: Modifier = Modifier, url: String = "") {
             .then(modifier),
         shape = RoundedCornerShape(22.dp)
     ) {
-        LibsImage.KamelImage(url = url)
+        libsImage().KamelImage(modifier = Modifier, url = url)
     }
 }
 

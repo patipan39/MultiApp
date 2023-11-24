@@ -23,8 +23,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.dev.ipati.multiapp.LibsImage
 import com.dev.ipati.multiapp.data.HomeResponse
+import com.dev.ipati.multiapp.libsImage
 import com.dev.ipati.multiapp.style.FontWeight400
 import com.multi.resource.SharedRes
 import dev.icerock.moko.resources.compose.painterResource
@@ -54,7 +54,7 @@ fun ThumbnailCollection(
                     onClickedItem?.invoke()
                 }
             ) {
-                LibsImage.KamelImage(url = it.album?.url.orEmpty())
+                libsImage().KamelImage(modifier = Modifier, url = it.album?.url.orEmpty())
                 Column(
                     modifier = Modifier.padding(16.dp),
                     verticalArrangement = Arrangement.Bottom

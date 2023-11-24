@@ -3,7 +3,9 @@ package com.dev.ipati.multiapp
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
-expect object LibsImage {
+interface ILibsImage {
     @Composable
-    fun KamelImage(modifier: Modifier = Modifier, url: String)
+    fun KamelImage(modifier: Modifier, url: String)
 }
+
+expect fun libsImage(): ILibsImage

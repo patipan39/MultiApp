@@ -26,7 +26,7 @@ struct MainComposeView: UIViewControllerRepresentable {
     let onBack: () -> Void
 
     func makeUIViewController(context: Context) -> UIViewController {
-        Main_iosKt.MainViewController {
+        Main_iosKt.mainViewController {
             onBack()
         }
     }

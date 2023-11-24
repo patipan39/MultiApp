@@ -100,21 +100,19 @@ class ProfileViewModel: ObservableObject {
 
     init() {
         Task {
-            await getProfileData()
+            try await getProfileData()
         }
     }
 
-    func getProfileData() async {
-        do {
-            let result = try await koinProfile.execute()
+    func getProfileData() async throws {
+        let result = try await koinProfile.execute()
+        await MainActor.run {
             if let success = result as? ResultSuccess {
                 self.currentProfile = success.data?.currentProfile
                 self.otherProfile = success.data?.otherProfile
             } else {
 
             }
-        } catch {
-
         }
     }
 }

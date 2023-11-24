@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.dev.ipati.multiapp.LibsImage
+import com.dev.ipati.multiapp.libsImage
 import com.dev.ipati.multiapp.style.FontWeight400
 import com.multi.resource.SharedRes
 import dev.icerock.moko.resources.compose.painterResource
@@ -100,7 +100,7 @@ fun Thumbnail() {
                 val modifier = Modifier
                     .width(266.dp)
                     .height(268.dp)
-                LibsImage.KamelImage(
+                libsImage().KamelImage(
                     modifier,
                     "https://www.khaosod.co.th/wpapp/uploads/2023/06/ent15p1-6.jpg"
                 )

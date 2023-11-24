@@ -5,7 +5,7 @@ import com.dev.ipati.multiapp.compose.main.App
 import com.dev.ipati.multiapp.compose.BaseTheme
 import platform.UIKit.UIViewController
 
-fun MainViewController(onBack: (() -> Unit)): UIViewController = ComposeUIViewController {
+fun mainViewController(onBack: (() -> Unit)): UIViewController = ComposeUIViewController {
     BaseTheme {
         App(onBack)
     }

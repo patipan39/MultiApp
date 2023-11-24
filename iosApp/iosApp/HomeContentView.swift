@@ -37,7 +37,7 @@ struct HomeComposeView: UIViewControllerRepresentable {
     let onClickedProfile: () -> Void
 
     func makeUIViewController(context: Context) -> UIViewController {
-        Home_iosKt.HomeViewController(onClickAlbum: onClickedAlbum, onClickProfile: onClickedProfile)
+        Home_iosKt.homeViewController(onClickAlbum: onClickedAlbum, onClickProfile: onClickedProfile)
     }
 
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
