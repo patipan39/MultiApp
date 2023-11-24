@@ -1,10 +1,11 @@
 package com.dev.ipati.multiapp.viewmodel
 
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.dev.ipati.multiapp.Result
 import com.dev.ipati.multiapp.data.ProfileData
 import com.dev.ipati.multiapp.usecase.GetProfileUseCase
 import dev.icerock.moko.mvvm.livedata.MutableLiveData
-import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import kotlinx.coroutines.launch
 
 class ProfileViewModel(

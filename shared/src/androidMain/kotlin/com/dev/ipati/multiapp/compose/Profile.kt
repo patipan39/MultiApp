@@ -20,19 +20,11 @@ import com.dev.ipati.multiapp.data.ProfileData
 import com.dev.ipati.multiapp.style.FontWeight400
 import com.dev.ipati.multiapp.viewmodel.ProfileViewModel
 import com.multi.resource.SharedRes
-import dev.icerock.moko.mvvm.compose.getViewModel
-import dev.icerock.moko.mvvm.compose.viewModelFactory
 import dev.icerock.moko.mvvm.livedata.compose.observeAsState
 import dev.icerock.moko.resources.compose.colorResource
-import org.koin.mp.KoinPlatform
 
 @Composable
-fun ProfilePage() {
-    val viewModel: ProfileViewModel = getViewModel(Unit, viewModelFactory {
-        ProfileViewModel(
-            KoinPlatform.getKoin().get()
-        )
-    })
+fun ProfilePage(viewModel : ProfileViewModel) {
     val profile by viewModel.currentLoginSocial.observeAsState()
     BaseProfile(profile)
 }

@@ -11,12 +11,12 @@ struct ProfileView: View {
         }
                 .navigationTitle("ข้อมูลส่วนตัว")
                 .navigationBarTitleDisplayMode(.inline)
-                .environmentObject(ObjectProfileViewModel())
+                .environmentObject(ProfileViewModel())
     }
 }
 
 struct ProfilePage: View {
-    @StateObject var profile: ObjectProfileViewModel = ObjectProfileViewModel()
+    @StateObject var profile: ProfileViewModel = ProfileViewModel()
 
     let imageUrl = "https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
     var body: some View {
@@ -92,22 +92,13 @@ struct ProfileView_Previews: PreviewProvider {
     }
 }
 
-class ObjectProfileViewModel: ObservableObject {
+class ProfileViewModel: ObservableObject {
 
-    let viewModel = GetProfileViewModel().getProfileViewModel()
-
+    private let koinProfile = KoinHelper().getProfileUseCase()
     @Published var currentProfile: [ProfileData.Info]? = []
     @Published var otherProfile: [ProfileData.Info]? = []
 
-    var observeCurrentLogin: NSKeyValueObservation? = nil
-
     init() {
-        observeCurrentLogin = viewModel.currentLoginSocial.observe(\.value, options: [.old, .new], changeHandler: {
-            (mutableLiveData, changeValue) in
-            self.currentProfile = changeValue.newValue?.unsafelyUnwrapped.currentProfile ?? []
-            self.otherProfile = changeValue.newValue?.unsafelyUnwrapped.otherProfile ?? []
-        });
-
         Task {
             await getProfileData()
         }
@@ -115,19 +106,16 @@ class ObjectProfileViewModel: ObservableObject {
 
     func getProfileData() async {
         do {
-            let result = try await GetProfileViewModel().getProfileUseCase().execute()
+            let result = try await koinProfile.execute()
             if let success = result as? ResultSuccess {
-                self.viewModel.currentLoginSocial.value = success.data
+                self.currentProfile = success.data?.currentProfile
+                self.otherProfile = success.data?.otherProfile
             } else {
 
             }
         } catch {
 
         }
-    }
-
-    deinit {
-        observeCurrentLogin?.invalidate()
     }
 }
 
