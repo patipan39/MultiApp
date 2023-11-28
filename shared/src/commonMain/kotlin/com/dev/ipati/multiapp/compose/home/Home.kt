@@ -23,9 +23,9 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import com.dev.ipati.multiapp.viewmodel.CommonViewModel
 import com.dev.ipati.multiapp.libsImage
 import com.dev.ipati.multiapp.style.FontWeight400
+import com.dev.ipati.multiapp.viewmodel.CommonViewModel
 import com.multi.resource.SharedRes
 import dev.icerock.moko.mvvm.compose.getViewModel
 import dev.icerock.moko.mvvm.compose.viewModelFactory
@@ -35,13 +35,12 @@ import org.koin.mp.KoinPlatform
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun Home(
+    viewModel: CommonViewModel = getViewModel(CommonViewModel::class.simpleName.orEmpty(), viewModelFactory {
+        CommonViewModel(KoinPlatform.getKoin().get())
+    }),
     onClickAlbum: (() -> Unit)? = null,
     onClickProfile: (() -> Unit)? = null
 ) {
-    val viewModel: CommonViewModel = getViewModel(
-        Unit, viewModelFactory {
-            CommonViewModel(KoinPlatform.getKoin().get())
-        })
     val component by viewModel.stateHome
     val search by viewModel.search
     val homeState = rememberLazyListState()

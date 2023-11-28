@@ -14,7 +14,6 @@ class CommonViewModel(
 
     val search = mutableStateOf("")
 
-    @Stable
     val stateHome = mutableStateOf(listOf(HomeResponse.Data()))
 
     val stateError = mutableStateOf(Exception())

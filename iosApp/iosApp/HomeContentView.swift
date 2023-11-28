@@ -2,42 +2,40 @@ import SwiftUI
 import shared
 
 struct HomeContentView: View {
-
-    @State var goToMainPage: Bool = false
-    @State var goToProfilePage: Bool = false
+    @EnvironmentObject var initialHome: InitialHomePage
 
     var body: some View {
         NavigationView {
             VStack {
-                HomeComposeView(
-                    onClickedAlbum: {
-                        goToMainPage = true
-                    }, onClickedProfile: {
-                    goToProfilePage = true
-                })
-                NavigationLink("", destination: MainView(), isActive: $goToMainPage)
-                NavigationLink("", destination: ProfileView(), isActive: $goToProfilePage)
+                initialHome.page
+                NavigationLink("", destination: MainView(), isActive: $initialHome.goToAlbums)
+                NavigationLink("", destination: ProfileView(), isActive: $initialHome.goToProfiles)
             }
         }
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeComposeView(onClickedAlbum: {
+class InitialHomePage: ObservableObject {
+    @Published var page: HomeComposeView
 
-        }, onClickedProfile: {
+    @Published var goToAlbums: Bool = false
 
-        })
+    @Published var goToProfiles: Bool = false
+
+    init() {
+        self.page = HomeComposeView()
     }
 }
 
 struct HomeComposeView: UIViewControllerRepresentable {
-    let onClickedAlbum: () -> Void;
-    let onClickedProfile: () -> Void
+    @EnvironmentObject var initialHome: InitialHomePage
 
     func makeUIViewController(context: Context) -> UIViewController {
-        Home_iosKt.homeViewController(onClickAlbum: onClickedAlbum, onClickProfile: onClickedProfile)
+        Home_iosKt.homeViewController(onClickAlbum: {
+            self.initialHome.goToAlbums = true
+        }, onClickProfile: {
+            self.initialHome.goToProfiles = true
+        })
     }
 
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {

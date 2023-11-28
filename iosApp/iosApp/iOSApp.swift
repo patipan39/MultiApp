@@ -4,12 +4,12 @@ import shared
 @main
 struct iOSApp: App {
     init() {
-       KoinHelper().doInitKoin()
+        KoinHelper().doInitKoin()
     }
-    
-	var body: some Scene {
-		WindowGroup {
-            HomeContentView()
-		}
-	}
+
+    var body: some Scene {
+        WindowGroup {
+            HomeContentView().environmentObject(InitialHomePage())
+        }
+    }
 }

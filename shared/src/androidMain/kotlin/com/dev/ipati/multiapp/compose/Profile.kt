@@ -1,5 +1,6 @@
 package com.dev.ipati.multiapp.compose
 
+import androidx.activity.ComponentActivity
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -12,6 +13,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -26,12 +28,15 @@ import dev.icerock.moko.resources.compose.colorResource
 @Composable
 fun ProfilePage(viewModel: ProfileViewModel) {
     val profile by viewModel.currentLoginSocial.observeAsState()
-    BaseProfile(profile)
+    val context = LocalContext.current
+    BaseProfile(profile, onBackPress = {
+        (context as ComponentActivity).finishAfterTransition()
+    })
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BaseProfile(profile: ProfileData) {
+fun BaseProfile(profile: ProfileData, onBackPress: (() -> Unit)? = null) {
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
@@ -44,6 +49,7 @@ fun BaseProfile(profile: ProfileData) {
                 }, navigationIcon = {
                     IconButton(
                         onClick = {
+                            onBackPress?.invoke()
                         }, content = {
                             Icon(
                                 imageVector = Icons.Filled.ArrowBack,
