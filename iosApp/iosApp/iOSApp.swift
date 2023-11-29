@@ -9,7 +9,7 @@ struct iOSApp: App {
 
     var body: some Scene {
         WindowGroup {
-            HomeContentView().environmentObject(InitialHomePage())
+            HomeContentView()
         }
     }
 }

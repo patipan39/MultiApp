@@ -1,11 +1,13 @@
 package com.dev.ipati.multiapp.viewmodel
 
-import androidx.compose.runtime.Stable
 import androidx.compose.runtime.mutableStateOf
 import com.dev.ipati.multiapp.Result
 import com.dev.ipati.multiapp.data.HomeResponse
 import com.dev.ipati.multiapp.usecase.GetHomeUseCase
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class CommonViewModel(
@@ -14,15 +16,21 @@ class CommonViewModel(
 
     val search = mutableStateOf("")
 
-    val stateHome = mutableStateOf(listOf(HomeResponse.Data()))
+    private val _stateHome = MutableStateFlow<List<HomeResponse.Data>>(emptyList())
+    val stateHome = _stateHome.asStateFlow()
+    private val stateError = mutableStateOf(Exception())
 
-    val stateError = mutableStateOf(Exception())
+    fun search(keyword: String) {
+        search.value = keyword
+    }
 
-    init {
+    fun getHomeComponent() {
         viewModelScope.launch {
             when (val result = albumUseCase.execute()) {
                 is Result.Success -> {
-                    stateHome.value = result.data.component ?: emptyList()
+                    _stateHome.update {
+                        result.data.component?.toList() ?: emptyList()
+                    }
                 }
 
                 is Result.Error -> {
@@ -30,9 +38,5 @@ class CommonViewModel(
                 }
             }
         }
-    }
-
-    fun search(keyword: String) {
-        search.value = keyword
     }
 }

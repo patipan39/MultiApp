@@ -2,40 +2,30 @@ import SwiftUI
 import shared
 
 struct HomeContentView: View {
-    @EnvironmentObject var initialHome: InitialHomePage
+    @State var goToAlbums: Bool = false
+    @State var goToProfiles: Bool = false
 
     var body: some View {
         NavigationView {
             VStack {
-                initialHome.page
-                NavigationLink("", destination: MainView(), isActive: $initialHome.goToAlbums)
-                NavigationLink("", destination: ProfileView(), isActive: $initialHome.goToProfiles)
+                HomeComposeView(onClickAlbum: {
+                    goToAlbums = true
+                }, onClickProfile: {
+                    goToProfiles = true
+                })
+                NavigationLink("", destination: MainView(), isActive: $goToAlbums)
+                NavigationLink("", destination: ProfileView(), isActive: $goToProfiles)
             }
         }
     }
 }
 
-class InitialHomePage: ObservableObject {
-    @Published var page: HomeComposeView
-
-    @Published var goToAlbums: Bool = false
-
-    @Published var goToProfiles: Bool = false
-
-    init() {
-        self.page = HomeComposeView()
-    }
-}
-
 struct HomeComposeView: UIViewControllerRepresentable {
-    @EnvironmentObject var initialHome: InitialHomePage
+    let onClickAlbum: () -> Void
+    let onClickProfile: () -> Void
 
     func makeUIViewController(context: Context) -> UIViewController {
-        Home_iosKt.homeViewController(onClickAlbum: {
-            self.initialHome.goToAlbums = true
-        }, onClickProfile: {
-            self.initialHome.goToProfiles = true
-        })
+        Home_iosKt.homeViewController(onClickAlbum: onClickAlbum, onClickProfile: onClickProfile)
     }
 
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {

@@ -15,6 +15,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -27,23 +29,21 @@ import com.dev.ipati.multiapp.libsImage
 import com.dev.ipati.multiapp.style.FontWeight400
 import com.dev.ipati.multiapp.viewmodel.CommonViewModel
 import com.multi.resource.SharedRes
-import dev.icerock.moko.mvvm.compose.getViewModel
-import dev.icerock.moko.mvvm.compose.viewModelFactory
 import dev.icerock.moko.resources.compose.stringResource
-import org.koin.mp.KoinPlatform
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun Home(
-    viewModel: CommonViewModel = getViewModel(CommonViewModel::class.simpleName.orEmpty(), viewModelFactory {
-        CommonViewModel(KoinPlatform.getKoin().get())
-    }),
+    viewModel: CommonViewModel,
     onClickAlbum: (() -> Unit)? = null,
     onClickProfile: (() -> Unit)? = null
 ) {
-    val component by viewModel.stateHome
-    val search by viewModel.search
+    LaunchedEffect(viewModel.stateHome) {
+        viewModel.getHomeComponent()
+    }
     val homeState = rememberLazyListState()
+    val component by viewModel.stateHome.collectAsState()
+    val search by viewModel.search
     LazyColumn(
         modifier = Modifier
             .fillMaxSize(),
