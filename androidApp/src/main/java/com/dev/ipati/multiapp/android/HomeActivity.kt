@@ -4,7 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
 import com.dev.ipati.multiapp.compose.BaseTheme
+import com.dev.ipati.multiapp.compose.home.BaseHome
 import com.dev.ipati.multiapp.compose.home.Home
 import com.dev.ipati.multiapp.viewmodel.CommonViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -26,5 +29,11 @@ class HomeActivity : ComponentActivity() {
                     })
             }
         }
+    }
+
+    @Preview(showSystemUi = true)
+    @Composable
+    private fun PreviewHome() {
+        BaseHome(emptyList(), "Hello")
     }
 }

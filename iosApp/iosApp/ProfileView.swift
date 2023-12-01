@@ -11,7 +11,6 @@ struct ProfileView: View {
         }
                 .navigationTitle("ข้อมูลส่วนตัว")
                 .navigationBarTitleDisplayMode(.inline)
-                .environmentObject(ProfileViewModel())
     }
 }
 

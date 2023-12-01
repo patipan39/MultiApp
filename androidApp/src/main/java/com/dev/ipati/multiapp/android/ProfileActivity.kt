@@ -4,8 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
-import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.ui.platform.LocalContext
 import com.dev.ipati.multiapp.compose.ProfilePage
 import com.dev.ipati.multiapp.viewmodel.ProfileViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -18,10 +16,7 @@ class ProfileActivity : ComponentActivity() {
             BackHandler(onBack = {
                 finishAfterTransition()
             })
-
-            CompositionLocalProvider(LocalContext provides this) {
-                ProfilePage(viewModel)
-            }
+            ProfilePage(viewModel)
         }
     }
 }

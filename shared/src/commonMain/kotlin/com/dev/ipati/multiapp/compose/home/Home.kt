@@ -25,13 +25,13 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import com.dev.ipati.multiapp.data.HomeResponse
 import com.dev.ipati.multiapp.libsImage
 import com.dev.ipati.multiapp.style.FontWeight400
 import com.dev.ipati.multiapp.viewmodel.CommonViewModel
 import com.multi.resource.SharedRes
 import dev.icerock.moko.resources.compose.stringResource
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun Home(
     viewModel: CommonViewModel,
@@ -41,9 +41,23 @@ fun Home(
     LaunchedEffect(viewModel.stateHome) {
         viewModel.getHomeComponent()
     }
-    val homeState = rememberLazyListState()
     val component by viewModel.stateHome.collectAsState()
     val search by viewModel.search
+    BaseHome(component, search, onClickAlbum, onClickProfile, onChangeSearch = {
+        viewModel.search(it)
+    })
+}
+
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+fun BaseHome(
+    homeComponent: List<HomeResponse.Data>,
+    search: String,
+    onClickAlbum: (() -> Unit)? = null,
+    onClickProfile: (() -> Unit)? = null,
+    onChangeSearch: ((String) -> Unit)? = null
+) {
+    val homeState = rememberLazyListState()
     LazyColumn(
         modifier = Modifier
             .fillMaxSize(),
@@ -64,11 +78,11 @@ fun Home(
         }
         item {
             SearchField(paddingHorizontal, search, onChange = {
-                viewModel.search(it)
+                onChangeSearch?.invoke(it)
             })
         }
         //shelf section
-        items(items = component, key = {
+        items(items = homeComponent, key = {
             it.id.orEmpty()
         }) {
             it.banner.takeIf { url -> !url.isNullOrEmpty() }?.let { url ->
@@ -80,6 +94,7 @@ fun Home(
                 )
                 BannerHome(paddingHorizontal, url)
             } ?: run {
+
                 TitleHome(
                     paddingHorizontal
                         .then(paddingVertical),
@@ -87,6 +102,7 @@ fun Home(
                     20
                 )
             }
+
             ThumbnailCollection(
                 albums = it.songList ?: emptyList(),
                 onClickedItem = onClickAlbum

@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "type": "android-app",
+            "name": "Android-app",
+            "module": "MultiApp.androidApp.main",
+            "destination": "Pixel 4a API33"
+        },
+        {
+            "type": "xcode-app",
+            "name": "Xcode-app",
+            "buildTarget": {
+                "project": "iosApp",
+                "target": "iosApp",
+            },
+            "configuration": "Debug",
+            "destination": "iPhone 14 Pro Max | iOS 16.4",
+        },
+        
+    ]
+}
