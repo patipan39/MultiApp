@@ -27,6 +27,7 @@ data class HomeResponse(
 
     @Serializable
     data class Album(
+        val id: String? = null,
         val url: String? = null,
         val name: String? = null
     )

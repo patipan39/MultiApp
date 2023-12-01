@@ -10,7 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.LinearProgressIndicator
-import androidx.compose.material.Text
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -20,7 +20,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.unit.dp
-import com.dev.ipati.multiapp.media.MediaPlayer
+import com.dev.ipati.multiapp.media.mediaPlayer
 import com.dev.ipati.multiapp.style.FontWeight400
 import com.multi.resource.SharedRes
 import dev.icerock.moko.resources.compose.painterResource
@@ -28,6 +28,7 @@ import dev.icerock.moko.resources.compose.painterResource
 @Composable
 fun Detail() {
     val progress = remember { mutableStateOf(Progress()) }
+
     Column(
         modifier = Modifier.padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(4.dp)
@@ -80,9 +81,7 @@ fun Detail() {
             )
         }
         if (!LocalInspectionMode.current) {
-            MediaPlayer.onProgress {
-                progress.value = Progress(it)
-            }
+            mediaPlayer().onProgress()
         }
         ControllerPlayer()
     }

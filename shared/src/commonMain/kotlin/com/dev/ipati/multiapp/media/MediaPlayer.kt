@@ -2,11 +2,14 @@ package com.dev.ipati.multiapp.media
 
 import androidx.compose.runtime.Composable
 
-expect object MediaPlayer {
-    fun play(uri: String)
-
+interface IMediaPlayer {
+    fun onPlay()
     fun isPlaying(): Boolean
 
     @Composable
-    fun onProgress(progress: ((Float) -> Unit))
+    fun onProgress()
+
+    fun setAlbumId(id: String)
 }
+
+expect fun mediaPlayer(): IMediaPlayer

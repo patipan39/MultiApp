@@ -31,6 +31,7 @@ import com.dev.ipati.multiapp.style.FontWeight400
 import com.dev.ipati.multiapp.viewmodel.CommonViewModel
 import com.multi.resource.SharedRes
 import dev.icerock.moko.resources.compose.stringResource
+import org.koin.mp.KoinPlatform
 
 @Composable
 fun Home(
@@ -105,7 +106,9 @@ fun BaseHome(
 
             ThumbnailCollection(
                 albums = it.songList ?: emptyList(),
-                onClickedItem = onClickAlbum
+                onClickedItem = {
+                    onClickAlbum?.invoke()
+                }
             )
         }
     }

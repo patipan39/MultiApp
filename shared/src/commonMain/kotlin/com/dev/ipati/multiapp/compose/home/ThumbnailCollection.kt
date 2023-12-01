@@ -33,7 +33,7 @@ import dev.icerock.moko.resources.compose.painterResource
 @Composable
 fun ThumbnailCollection(
     albums: List<HomeResponse.Song> = emptyList(),
-    onClickedItem: (() -> Unit)? = null
+    onClickedItem: ((String) -> Unit)? = null
 ) {
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -51,7 +51,7 @@ fun ThumbnailCollection(
                 color = Color.Transparent,
                 contentColor = Color.Transparent,
                 onClick = {
-                    onClickedItem?.invoke()
+                    onClickedItem?.invoke(it.album?.id.orEmpty())
                 }
             ) {
                 libsImage().KamelImage(modifier = Modifier, url = it.album?.url.orEmpty())

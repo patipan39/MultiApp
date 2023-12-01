@@ -4,28 +4,26 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.coroutines.delay
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
-import platform.AVFoundation.AVPlayerItem
-import platform.AVFoundation.currentItem
-import platform.AVFoundation.currentTime
-import platform.AVFoundation.duration
-import platform.AVFoundation.pause
-import platform.AVFoundation.play
-import platform.AVFoundation.rate
-import platform.AVFoundation.replaceCurrentItemWithPlayerItem
+import org.koin.mp.KoinPlatform
+import platform.AVFoundation.*
 import platform.CoreMedia.CMTimeGetSeconds
-import platform.Foundation.NSLog
 import platform.Foundation.NSURL
 
-actual object MediaPlayer : KoinComponent {
-    private val mediaWrapper: MediaWrapper by inject()
 
-    actual fun play(uri: String) {
-        val playerItem = AVPlayerItem(NSURL.fileURLWithPath(uri))
+class MediaPlayerImpl : IMediaPlayer {
+
+    private val mediaWrapper: MediaWrapper = KoinPlatform.getKoin().get()
+
+    init {
+        val playerItem =
+            NSURL.URLWithString("https://drive.google.com/uc?export=open&id=15qj-hsjErmddGDHeYyByNoHlyabiG7kI")
+                ?.let { AVPlayerItem(it) }
         mediaWrapper.getAVPlayer().currentItem ?: run {
             mediaWrapper.getAVPlayer().replaceCurrentItemWithPlayerItem(playerItem)
         }
+    }
+
+    override fun onPlay() {
         if (isPlaying()) {
             mediaWrapper.getAVPlayer().pause()
         } else {
@@ -33,14 +31,14 @@ actual object MediaPlayer : KoinComponent {
         }
     }
 
-    actual fun isPlaying(): Boolean {
+    override fun isPlaying(): Boolean {
         return mediaWrapper.getAVPlayer().rate != 0f
                 && mediaWrapper.getAVPlayer().error == null
     }
 
     @OptIn(ExperimentalForeignApi::class)
     @Composable
-    actual fun onProgress(progress: (Float) -> Unit) {
+    override fun onProgress() {
         val player = mediaWrapper.getAVPlayer()
         LaunchedEffect(isPlaying()) {
             while (true) {
@@ -50,11 +48,18 @@ actual object MediaPlayer : KoinComponent {
                     val time = CMTimeGetSeconds(it.currentTime())
                     val updateProgress =
                         ((time * 100) / duration).toFloat()
-                    progress(updateProgress)
+//                    progress(updateProgress)
                 } ?: run {
-                    progress(0f)
+//                    progress(0f)
                 }
             }
         }
     }
+
+    override fun setAlbumId(id: String) {
+        
+    }
+
 }
+
+actual fun mediaPlayer(): IMediaPlayer = KoinPlatform.getKoin().get()

@@ -23,7 +23,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.unit.dp
-import com.dev.ipati.multiapp.media.MediaPlayer
+import com.dev.ipati.multiapp.media.mediaPlayer
 import com.multi.resource.SharedRes
 import dev.icerock.moko.resources.compose.painterResource
 
@@ -52,7 +52,7 @@ fun ControllerPlayer() {
             if (isPlayState.value.isPlay) {
                 PauseIcon {
                     val isPlay = if (!inspectionMode) {
-                        MediaPlayer.isPlaying()
+                        mediaPlayer().isPlaying()
                     } else {
                         false
                     }
@@ -61,7 +61,7 @@ fun ControllerPlayer() {
             } else {
                 PlayIcon {
                     val isPlay = if (!inspectionMode) {
-                        MediaPlayer.isPlaying()
+                        mediaPlayer().isPlaying()
                     } else {
                         false
                     }
@@ -82,10 +82,7 @@ fun PauseIcon(onClicked: ((Boolean) -> Unit)? = null) {
     Row(
         modifier = Modifier.padding(vertical = 21.dp).clickable {
             if (!isInspectionMode) {
-                MediaPlayer.play(
-                    //Todo: implement url music
-                    ""
-                )
+                mediaPlayer().onPlay()
             }
             onClicked?.invoke(true)
         },
@@ -107,9 +104,7 @@ fun PlayIcon(onClicked: ((Boolean) -> Unit)? = null) {
         modifier = Modifier.padding(20.dp)
             .clickable {
                 if (!isInspectionMode) {
-                    MediaPlayer.play(
-                        ""
-                    )
+                    mediaPlayer().onPlay()
                 }
                 onClicked?.invoke(false)
             },

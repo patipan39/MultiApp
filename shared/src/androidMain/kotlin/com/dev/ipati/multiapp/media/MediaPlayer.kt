@@ -2,30 +2,18 @@ package com.dev.ipati.multiapp.media
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.core.net.toUri
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
-import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.ExoPlayer
 import kotlinx.coroutines.delay
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
+import org.koin.mp.KoinPlatform
 
-@UnstableApi
-actual object MediaPlayer : KoinComponent {
-    private val exoPlayer: ExoPlayer by inject()
+class MediaPlayerImpl : IMediaPlayer {
 
-    init {
-        exoPlayer.currentMediaItem ?: run {
-            val mediaItem = MediaItem.fromUri(
-                //Todo: implement url music
-                ""
-            )
-            exoPlayer.setMediaItem(mediaItem)
-            exoPlayer.prepare()
-        }
-    }
+    private val exoPlayer: ExoPlayer = KoinPlatform.getKoin().get()
 
-    actual fun play(uri: String) {
+    override fun onPlay() {
         if (!exoPlayer.isPlaying) {
             exoPlayer.play()
         } else {
@@ -33,20 +21,32 @@ actual object MediaPlayer : KoinComponent {
         }
     }
 
-    actual fun isPlaying(): Boolean = exoPlayer.isPlaying
+    override fun isPlaying(): Boolean = exoPlayer.isPlaying
 
     @Composable
-    actual fun onProgress(progress: ((Float)) -> Unit) {
+    override fun onProgress() {
         LaunchedEffect(exoPlayer.playbackState == Player.STATE_BUFFERING) {
             while (true) {
                 delay(1000L)
                 if (exoPlayer.playbackState == Player.STATE_ENDED) {
-                    progress(0f)
+//                    progress(0f)
                     break
                 } else {
-                    progress((exoPlayer.currentPosition * 100) / exoPlayer.duration.toFloat())
+//                    progress((exoPlayer.currentPosition * 100) / exoPlayer.duration.toFloat())
                 }
             }
         }
     }
+
+    override fun setAlbumId(id: String) {
+        exoPlayer.currentMediaItem ?: run {
+            val mediaItem = MediaItem.fromUri(
+                "https://drive.google.com/uc?export=open&id=${id}".toUri()
+            )
+            exoPlayer.setMediaItem(mediaItem)
+            exoPlayer.prepare()
+        }
+    }
 }
+
+actual fun mediaPlayer(): IMediaPlayer = KoinPlatform.getKoin().get()
