@@ -5,12 +5,12 @@ compose-mvvm-version = "0.16.1"
 media3-exoplayer = "1.1.1"
 moko-resource-version = "0.23.0"
 ktor-client-version = "2.3.5"
-kotin-version = "1.9.20"
+kotin-version = "1.9.21"
 multipleplatform-resource-version = "0.23.0"
-compose-multipleplatform-version = "1.5.10"
+compose-multipleplatform-version = "1.5.11"
 compose-android-version = "1.5.4"
 compose-activity-version = "1.8.0"
-compose-compileversion = "1.5.4-dev-k1.9.20-50f08dfa4b4"
+compose-compileversion = "1.5.4"
 ktor-version = "2.3.5"
 coroutine-version = "1.7.3"
 kotlin-serialization-version = "1.9.20"
@@ -19,8 +19,8 @@ compose-material3-version = "1.1.2"
 kswift-version = "0.6.1"
 moko-livedata-version = "0.16.1"
 coroutine-test-version = "1.8.0-RC2"
-kotest-version = "5.8.0"
-ksp-version = "1.8.10-1.0.9"
+ksp-version = "1.9.21-1.0.16"
+mockative-version = "2.0.1"
 
 [libraries]
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin-version" }
@@ -66,9 +66,8 @@ coroutine-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", ver
 
 kamel-image = { module = "media.kamel:kamel-image", version.ref = "kamel-image-version" }
 
-kotest-engine = { module = "io.kotest:kotest-framework-engine", version.ref = "kotest-version" }
-kotest-property = { module = "io.kotest:kotest-property", version.ref = "kotest-version" }
-kotest-assertion = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest-version" }
+mockative = { module = "io.mockative:mockative", version.ref = "mockative-version" }
+mockative-processor = { module = "io.mockative:mockative-processor", version.ref = "mockative-version" }
 
 [plugins]
 application = { id = "com.android.application", version.ref = "android-application-version" }
@@ -79,5 +78,4 @@ multiplatform-resource = { id = "dev.icerock.mobile.multiplatform-resources", ve
 composemultipleplatform = { id = "org.jetbrains.compose", version.ref = "compose-multipleplatform-version" }
 kotlinserialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin-serialization-version" }
 kswift = { id = "dev.icerock.moko.kswift", version.ref = "kswift-version" }
-kotest = { id = "io.kotest.multiplatform", version.ref = "kotest-version" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp-version" }

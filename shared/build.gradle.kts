@@ -1,13 +1,13 @@
 @file:Suppress("DSL_SCOPE_VIOLATION")
 
 plugins {
+    alias(libs.plugins.ksp)
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.library)
     alias(libs.plugins.composemultipleplatform)
     alias(libs.plugins.multiplatform.resource)
     alias(libs.plugins.kotlinserialization)
     alias(libs.plugins.kswift)
-    alias(libs.plugins.kotest)
 }
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
@@ -99,9 +99,7 @@ kotlin {
         commonTest.dependencies {
             implementation(kotlin("test"))
             implementation(libs.coroutine.test)
-            implementation(libs.kotest.engine)
-            implementation(libs.kotest.assertion)
-            implementation(libs.kotest.property)
+            implementation(libs.mockative)
         }
     }
 }
@@ -138,4 +136,8 @@ configurations.all {
     resolutionStrategy {
         force("org.jetbrains.skiko:skiko:0.7.85.4")
     }
+}
+
+dependencies {
+    ksp(libs.mockative.processor)
 }
