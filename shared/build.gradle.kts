@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.multiplatform.resource)
     alias(libs.plugins.kotlinserialization)
     alias(libs.plugins.kswift)
+    alias(libs.plugins.kotest)
 }
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
@@ -39,7 +40,7 @@ kotlin {
     }
 
     sourceSets {
-        val androidMain by getting {
+        androidMain {
             dependsOn(commonMain.get())
             dependencies {
                 implementation(libs.media3.exoplayer)
@@ -51,57 +52,56 @@ kotlin {
                 implementation(libs.compose.android.material3)
             }
         }
-        val commonMain by getting {
-            dependencies {
-                //put your multiplatform dependencies here
-                implementation(compose.runtime)
-                implementation(compose.ui)
-                implementation(compose.foundation)
-                implementation(compose.material3)
-                implementation(compose.material)
-                @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
-                implementation(compose.components.resources)
 
-                //koin
-                implementation(libs.koin.core)
-                implementation(libs.koin.test)
+        commonMain.dependencies {
+            //put your multiplatform dependencies here
+            implementation(compose.runtime)
+            implementation(compose.ui)
+            implementation(compose.foundation)
+            implementation(compose.material3)
+            implementation(compose.material)
+            @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
+            implementation(compose.components.resources)
 
-                // compose multiplatform
-                api(libs.compose.mvvm) // api mvvm-core, getViewModel for Compose Multiplatfrom
-                api(libs.compose.flow) // api mvvm-flow, binding extensions for Compose Multiplatfrom
-                api(libs.compose.livedata)
-                api("dev.icerock.moko:kswift-runtime:0.6.1")
+            //koin
+            implementation(libs.koin.core)
+            implementation(libs.koin.test)
 
-                api(libs.compose.core) // only ViewModel, EventsDispatcher, Dispatchers.UI
-                api(libs.moko.flow) // api mvvm-core, CFlow for native and binding extensions
-                api(libs.compose.livedata.resource) // api mvvm-core, LiveData and extensions
-                api(libs.compose.mvvm.state)// api mvvm-livedata, ResourceState class and extensions
-                api(libs.moko.livedata) // api mvvm-core, moko-resources, extensions for LiveData with moko-resources
-                api(libs.moko.flowresource) // api mvvm-core, moko-resources, extensions for Flow with moko-resources
+            // compose multiplatform
+            api(libs.compose.mvvm) // api mvvm-core, getViewModel for Compose Multiplatfrom
+            api(libs.compose.flow) // api mvvm-flow, binding extensions for Compose Multiplatfrom
+            api(libs.compose.livedata)
+            api("dev.icerock.moko:kswift-runtime:0.6.1")
 
-                implementation(libs.moko.resource)
-                implementation(libs.moko.compose)
+            api(libs.compose.core) // only ViewModel, EventsDispatcher, Dispatchers.UI
+            api(libs.moko.flow) // api mvvm-core, CFlow for native and binding extensions
+            api(libs.compose.livedata.resource) // api mvvm-core, LiveData and extensions
+            api(libs.compose.mvvm.state)// api mvvm-livedata, ResourceState class and extensions
+            api(libs.moko.livedata) // api mvvm-core, moko-resources, extensions for LiveData with moko-resources
+            api(libs.moko.flowresource) // api mvvm-core, moko-resources, extensions for Flow with moko-resources
 
-                implementation(libs.ktor.client)
-                implementation(libs.ktor.client.core)
-                implementation(libs.coroutine.core)
-                implementation(libs.ktor.serialization)
-                implementation(libs.ktor.cbor)
-                implementation(libs.ktor.protobuf)
-                implementation(libs.ktor.negotiation)
+            implementation(libs.moko.resource)
+            implementation(libs.moko.compose)
 
-                implementation(libs.kamel.image)
-            }
+            implementation(libs.ktor.client)
+            implementation(libs.ktor.client.core)
+            implementation(libs.coroutine.core)
+            implementation(libs.ktor.serialization)
+            implementation(libs.ktor.cbor)
+            implementation(libs.ktor.protobuf)
+            implementation(libs.ktor.negotiation)
+
+            implementation(libs.kamel.image)
         }
-        val iosMain by getting {
-            dependencies {
-                implementation(libs.ktor.client.darwin)
-            }
+        iosMain.dependencies {
+            implementation(libs.ktor.client.darwin)
         }
-        val commonTest by getting {
-            dependencies {
-                implementation(kotlin("test"))
-            }
+        commonTest.dependencies {
+            implementation(kotlin("test"))
+            implementation(libs.coroutine.test)
+            implementation(libs.kotest.engine)
+            implementation(libs.kotest.assertion)
+            implementation(libs.kotest.property)
         }
     }
 }

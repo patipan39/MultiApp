@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.multiplatform.resource).apply(false)
     alias(libs.plugins.composemultipleplatform).apply(false)
     alias(libs.plugins.kswift).apply(false)
+    alias(libs.plugins.ksp).apply(false)
 }
 
 tasks.register("clean", Delete::class) {

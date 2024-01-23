@@ -18,18 +18,19 @@ kamel-image-version = "0.8.3"
 compose-material3-version = "1.1.2"
 kswift-version = "0.6.1"
 moko-livedata-version = "0.16.1"
+coroutine-test-version = "1.8.0-RC2"
+kotest-version = "5.8.0"
+ksp-version = "1.8.10-1.0.9"
 
 [libraries]
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin-version" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin-version" }
 koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin-version" }
 
-compose-android-ui = { module = "androidx.compose.ui:ui", version.ref = "compose-android-version" }
 compose-android-tools = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose-android-version" }
 compose-android-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose-android-version" }
 compose-android-material = { module = "androidx.compose.material:material", version.ref = "compose-android-version" }
 compose-android-material3 = { module = "androidx.compose.material3:material3", version.ref = "compose-material3-version" }
-compose-android-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose-android-version" }
 compose-android-activity = { module = "androidx.activity:activity-compose", version.ref = "compose-activity-version" }
 
 compose-mvvm = { module = "dev.icerock.moko:mvvm-compose", version.ref = "compose-mvvm-version" }
@@ -61,8 +62,13 @@ ktor-cbor = { module = "io.ktor:ktor-serialization-kotlinx-cbor", version.ref = 
 
 coroutine-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutine-version" }
 coroutine-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutine-version" }
+coroutine-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutine-test-version" }
 
 kamel-image = { module = "media.kamel:kamel-image", version.ref = "kamel-image-version" }
+
+kotest-engine = { module = "io.kotest:kotest-framework-engine", version.ref = "kotest-version" }
+kotest-property = { module = "io.kotest:kotest-property", version.ref = "kotest-version" }
+kotest-assertion = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest-version" }
 
 [plugins]
 application = { id = "com.android.application", version.ref = "android-application-version" }
@@ -73,3 +79,5 @@ multiplatform-resource = { id = "dev.icerock.mobile.multiplatform-resources", ve
 composemultipleplatform = { id = "org.jetbrains.compose", version.ref = "compose-multipleplatform-version" }
 kotlinserialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin-serialization-version" }
 kswift = { id = "dev.icerock.moko.kswift", version.ref = "kswift-version" }
+kotest = { id = "io.kotest.multiplatform", version.ref = "kotest-version" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp-version" }
